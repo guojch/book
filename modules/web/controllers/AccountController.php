@@ -18,15 +18,15 @@ use yii\web\Controller;
 class AccountController extends Controller{
     
     //账户列表
-    public function actionIndex(){
+    public function actionList(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('list');
     }
     
     //账户编辑与添加
-    public function actionSet(){
+    public function actionEdit(){
         $this->layout = false;
-        return $this->render('set');
+        return $this->render('edit');
     }
     
     //账户详情
