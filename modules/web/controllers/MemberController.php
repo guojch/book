@@ -16,9 +16,9 @@ use yii\web\Controller;
  */
 class MemberController extends Controller{
     //会员列表
-    public function actionIndex(){
+    public function actionList(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('list');
     }
     
     //会员详情
@@ -28,9 +28,9 @@ class MemberController extends Controller{
     }
     
     //会员编辑与添加
-    public function actionSet(){
+    public function actionEdit(){
         $this->layout = false;
-        return $this->render('set');
+        return $this->render('edit');
     }
     
     //会员评论列表

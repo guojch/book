@@ -16,9 +16,9 @@ use yii\web\Controller;
  */
 class QrcodeController extends Controller{
     //渠道二维码列表
-    public function actionIndex(){
+    public function actionList(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('list');
     }
     
     //渠道二维码添加与编辑

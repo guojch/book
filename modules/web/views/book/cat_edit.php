@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>管理后台</title>
-	<link href="/css/web/bootstrap.min.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>管理后台</title>
+        <link href="/css/web/bootstrap.min.css" rel="stylesheet">
         <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/css/web/style.css?ver=20170401" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
             <nav class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
+		<div class="sidebar-collapse">
                     <ul class="nav metismenu" id="side-menu">
                         <li class="nav-header">
                             <div class="profile-element text-center">
                                 <img alt="image" class="img-circle" src="/images/web/logo.png" />
-                                <p class="text-muted">编程浪子</p>
+                                <p class="text-muted">郭小钧</p>
                             </div>
                             <div class="logo-element">
                                 <img alt="image" class="img-circle" src="/images/web/logo.png" />
@@ -49,7 +49,7 @@
                             <a href="/web/stat/index"><i class="fa fa-bar-chart fa-lg"></i> <span class="nav-label">统计管理</span></a>
                         </li>
                     </ul>
-                </div>
+		</div>
             </nav>
             <div id="page-wrapper" class="gray-bg" style="background-color: #ffffff;">
                 <div class="row border-bottom">
@@ -74,7 +74,7 @@
                                 <ul class="dropdown-menu dropdown-messages">
                                     <li>
                                         <div class="dropdown-messages-box">
-                                           姓名：郭大爷<a href="/web/user/edit" class="pull-right">编辑</a>
+                                            姓名：郭大爷<a href="/web/user/edit" class="pull-right">编辑</a>
                                         </div>
                                     </li>
                                     <li class="divider"></li>
@@ -104,7 +104,7 @@
                                 <li>
                                     <a href="/web/book/index">图书列表</a>
                                 </li>
-                                <li  class="current">
+                                <li class="current">
                                     <a href="/web/book/cat">分类列表</a>
                                 </li>
                                 <li>
@@ -114,65 +114,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row m-t  wrap_cat_set">
                     <div class="col-lg-12">
-                        <form class="form-inline wrap_search">
-                            <div class="row  m-t p-w-m">
-                                <div class="form-group">
-                                    <select name="status" class="form-control inline">
-                                        <option value="-1">请选择状态</option>
-                                        <option value="1">正常</option>
-                                        <option value="0">已删除</option>
-                                    </select>
+                        <h2 class="text-center">分类设置</h2>
+                        <div class="form-horizontal m-t m-b">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">分类名称:</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="name" class="form-control" placeholder="请输入分类名称~~" value="互联网">
                                 </div>
                             </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <a class="btn btn-w-m btn-outline btn-primary pull-right" href="/web/book/cat_set">
-                                        <i class="fa fa-plus"></i>分类
-                                    </a>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">权重:</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="weight" class="form-control" placeholder="请输入分类名称~~" value="1">
                                 </div>
                             </div>
-                        </form>
-                        <table class="table table-bordered m-t">
-                            <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>分类名称</th>
-                                    <th>状态</th>
-                                    <th>权重</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>政治类</td>
-                                    <td>已删除</td>
-                                    <td>4</td>
-                                    <td>
-                                        <a class="m-l recover" href="javascript:void(0);" data="1">
-                                            <i class="fa fa-rotate-left fa-lg"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>互联网</td>
-                                    <td>正常</td>
-                                    <td>1</td>
-                                    <td>
-                                        <a class="m-l" href="/web/book/cat_set?id=2">
-                                            <i class="fa fa-edit fa-lg"></i>
-                                        </a>
-                                        <a class="m-l remove" href="javascript:void(0);" data="2">
-                                            <i class="fa fa-trash fa-lg"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-lg-4 col-lg-offset-2">
+                                    <input type="hidden" name="id" value="2">
+                                    <button class="btn btn-w-m btn-outline btn-primary save">保存</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

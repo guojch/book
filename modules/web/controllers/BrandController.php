@@ -23,9 +23,9 @@ class BrandController extends Controller{
     }
     
     //品牌编辑
-    public function actionSet(){
+    public function actionEdit(){
         $this->layout = false;
-        return $this->render('set');
+        return $this->render('edit');
     }
     //品牌相册
     public function actionImages(){

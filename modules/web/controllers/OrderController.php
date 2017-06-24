@@ -15,10 +15,11 @@ use yii\web\Controller;
  * @author guojch
  */
 class OrderController extends Controller{
+    
     //订单列表
-    public function actionIndex(){
+    public function actionList(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('list');
     }
     
     //财务流水
@@ -28,8 +29,8 @@ class OrderController extends Controller{
     }
     
     //订单详情
-    public function actionPayInfo(){
+    public function actionInfo(){
         $this->layout = false;
-        return $this->render('pay_info');
+        return $this->render('info');
     }
 }

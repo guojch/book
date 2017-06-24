@@ -14,7 +14,8 @@ use yii\web\Controller;
  *
  * @author guojch
  */
-class StatController extends controller{
+class StatController extends Controller{
+    
     //财务统计
     public function actionFinance(){
         $this->layout = false;

@@ -16,8 +16,8 @@ use yii\web\Controller;
  */
 class DashboardController extends Controller{
     //仪表盘
-    public function actionIndex(){
+    public function actionInfo(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('info');
     }
 }
