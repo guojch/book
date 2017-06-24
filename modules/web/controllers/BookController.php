@@ -15,16 +15,17 @@ use yii\web\Controller;
  * @author guojch
  */
 class BookController extends Controller{
+
     //图书列表
-    public function actionIndex(){
+    public function actionList(){
         $this->layout = false;
-        return $this->render('index');
+        return $this->render('list');
     }
     
     //图书编辑与添加
-    public function actionSet(){
+    public function actionEdit(){
         $this->layout = false;
-        return $this->render('set');
+        return $this->render('edit');
     }
     
     //图书详情
@@ -46,8 +47,8 @@ class BookController extends Controller{
     }
     
     //图书分类的编辑与添加
-    public function actionCat_set(){
+    public function actionCat_edit(){
         $this->layout = false;
-        return $this->render('cat_set');
+        return $this->render('cat_edit');
     }
 }
