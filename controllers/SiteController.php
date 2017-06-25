@@ -13,7 +13,7 @@ class SiteController extends Controller
 {
     
     public function actionIndex(){
-        $this->layout = false;
+        $this->layout = 'main';
         return $this->render('index');
     }
     /**

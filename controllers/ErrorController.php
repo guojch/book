@@ -45,7 +45,7 @@ class ErrorController extends Controller{
             //写入到数据库中
         }
         
-        $this->layout = false;
+        $this->layout = 'main';
         return $this->render('error',['err_msg'=>$err_msg]);
     }
 }

@@ -17,21 +17,26 @@ use yii\web\Controller;
  */
 class AccountController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'account';
+    }
+    
     //账户列表
     public function actionList(){
-        $this->layout = false;
+        
         return $this->render('list');
     }
     
     //账户编辑与添加
     public function actionEdit(){
-        $this->layout = false;
+        
         return $this->render('edit');
     }
     
     //账户详情
     public function actionInfo(){
-        $this->layout = false;
+        
         return $this->render('info');
     }
 }
