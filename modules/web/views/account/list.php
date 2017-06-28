@@ -1,14 +1,3 @@
-<div class="row  border-bottom">
-    <div class="col-lg-12">
-        <div class="tab_title">
-            <ul class="nav nav-pills">
-                <li class="current">
-                    <a href="/web/account/list">账户列表</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <form class="form-inline wrap_search">

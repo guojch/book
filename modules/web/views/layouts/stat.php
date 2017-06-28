@@ -102,12 +102,21 @@
                     </nav>
                 </div>
                 
-                <div class="row border-bottom">
+                <div class="row  border-bottom">
                     <div class="col-lg-12">
                         <div class="tab_title">
                             <ul class="nav nav-pills">
-                                <li  class="current"  >
-                                    <a href="/web/account/list">账户列表</a>
+                                <li class="current">
+                                    <a href="/web/stat/finance">财务统计</a>
+                                </li>
+                                <li>
+                                    <a href="/web/stat/product">商品售卖</a>
+                                </li>
+                                <li>
+                                    <a href="/web/stat/member">会员消费统计</a>
+                                </li>
+                                <li>
+                                    <a href="/web/stat/share">分享统计</a>
                                 </li>
                             </ul>
                         </div>

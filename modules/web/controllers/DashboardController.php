@@ -15,9 +15,15 @@ use yii\web\Controller;
  * @author guojch
  */
 class DashboardController extends Controller{
+    
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'dashboard';
+    }
+    
     //仪表盘
     public function actionInfo(){
-        $this->layout = false;
+
         return $this->render('info');
     }
 }

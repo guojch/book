@@ -101,13 +101,16 @@
                         </ul>
                     </nav>
                 </div>
-                
+                		
                 <div class="row border-bottom">
                     <div class="col-lg-12">
                         <div class="tab_title">
                             <ul class="nav nav-pills">
-                                <li  class="current"  >
-                                    <a href="/web/account/list">账户列表</a>
+                                <li class="current">
+                                    <a href="/web/brand/info">品牌信息</a>
+                                </li>
+                                <li>
+                                    <a href="/web/brand/images">品牌相册</a>
                                 </li>
                             </ul>
                         </div>

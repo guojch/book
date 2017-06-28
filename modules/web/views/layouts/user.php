@@ -102,12 +102,15 @@
                     </nav>
                 </div>
                 
-                <div class="row border-bottom">
+                <div class="row  border-bottom">
                     <div class="col-lg-12">
                         <div class="tab_title">
                             <ul class="nav nav-pills">
-                                <li  class="current"  >
-                                    <a href="/web/account/list">账户列表</a>
+                                <li class="current">
+                                    <a href="/web/user/edit">信息编辑</a>
+                                </li>
+                                <li>
+                                    <a href="/web/user/reset-pwd">修改密码</a>
                                 </li>
                             </ul>
                         </div>

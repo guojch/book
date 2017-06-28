@@ -101,13 +101,18 @@
                         </ul>
                     </nav>
                 </div>
-                
-                <div class="row border-bottom">
+                <div class="row  border-bottom">
                     <div class="col-lg-12">
                         <div class="tab_title">
                             <ul class="nav nav-pills">
-                                <li  class="current"  >
-                                    <a href="/web/account/list">账户列表</a>
+                                <li>
+                                    <a href="/web/book/list">图书列表</a>
+                                </li>
+                                <li  class="current">
+                                    <a href="/web/book/cat">分类列表</a>
+                                </li>
+                                <li>
+                                    <a href="/web/book/images">图片资源</a>
                                 </li>
                             </ul>
                         </div>

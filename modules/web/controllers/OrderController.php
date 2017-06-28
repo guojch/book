@@ -16,21 +16,26 @@ use yii\web\Controller;
  */
 class OrderController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'order';
+    }
+    
     //订单列表
     public function actionList(){
-        $this->layout = false;
+
         return $this->render('list');
     }
     
     //财务流水
     public function actionFinance(){
-        $this->layout = false;
+
         return $this->render('finance');
     }
     
     //订单详情
     public function actionInfo(){
-        $this->layout = false;
+
         return $this->render('info');
     }
 }

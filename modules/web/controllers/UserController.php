@@ -16,6 +16,11 @@ use yii\web\Controller;
  */
 class UserController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'user';
+    }
+    
     //用户登录
     public function actionLogin(){
         $this->layout = false;
@@ -24,13 +29,13 @@ class UserController extends Controller{
     
     //用户编辑
     public function actionEdit(){
-        $this->layout = false;
+
         return $this->render('edit');
     }
     
     //用户重置密码
     public function actionResetPwd(){
-        $this->layout = false;
+
         return $this->render('reset_pwd');
     }
 }

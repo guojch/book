@@ -106,8 +106,11 @@
                     <div class="col-lg-12">
                         <div class="tab_title">
                             <ul class="nav nav-pills">
-                                <li  class="current"  >
-                                    <a href="/web/account/list">账户列表</a>
+                                <li>
+                                    <a href="/web/member/list">会员列表</a>
+                                </li>
+                                <li class="current">
+                                    <a href="/web/member/comment">会员评论</a>
                                 </li>
                             </ul>
                         </div>

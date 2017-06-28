@@ -15,6 +15,12 @@ use yii\web\Controller;
  * @author guojch
  */
 class QrcodeController extends Controller{
+    
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'qrcode';
+    }
+    
     //渠道二维码列表
     public function actionList(){
         $this->layout = false;

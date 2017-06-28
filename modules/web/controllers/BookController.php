@@ -9,46 +9,52 @@
 namespace app\modules\web\controllers;
 
 use yii\web\Controller;
+
 /**
  * Description of BookController
  *
  * @author guojch
  */
 class BookController extends Controller{
-
+    
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'book';
+    }
+    
     //图书列表
     public function actionList(){
-        $this->layout = false;
+
         return $this->render('list');
     }
     
     //图书编辑与添加
     public function actionEdit(){
-        $this->layout = false;
+
         return $this->render('edit');
     }
     
     //图书详情
     public function actionInfo(){
-        $this->layout = false;
+
         return $this->render('info');
     }
     
     //图书图片资源
     public function actionImages(){
-        $this->layout = false;
+
         return $this->render('images');
     }
     
     //图书分类列表
     public function actionCat(){
-        $this->layout = false;
+
         return $this->render('cat');
     }
     
     //图书分类的编辑与添加
     public function actionCat_edit(){
-        $this->layout = false;
+
         return $this->render('cat_edit');
     }
 }

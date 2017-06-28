@@ -16,20 +16,25 @@ use yii\web\Controller;
  */
 class BrandController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'brand';
+    }
+    
     //品牌信息
     public function actionInfo(){
-        $this->layout = false;
+
         return $this->render('info');
     }
     
     //品牌编辑
     public function actionEdit(){
-        $this->layout = false;
+
         return $this->render('edit');
     }
     //品牌相册
     public function actionImages(){
-        $this->layout = false;
+
         return $this->render('images');
     }
 }
