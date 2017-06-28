@@ -3,7 +3,7 @@
         <div class="tab_title">
             <ul class="nav nav-pills">
                 <li  class="current"  >
-                    <a href="/web/account/index">账户列表</a>
+                    <a href="/web/account/list">账户列表</a>
                 </li>
             </ul>
         </div>
@@ -16,35 +16,35 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">姓名:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="郭威">
+                    <input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">手机:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="mobile" class="form-control" placeholder="请输入手机~~" value="11012345678">
+                    <input type="text" name="mobile" class="form-control" placeholder="请输入手机~~" value="">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">邮箱:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="apanly@163.com">
+                    <input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">登录名:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="login_name" class="form-control" autocomplete="off" placeholder="请输入登录名~~" value="test4">
+                    <input type="text" name="login_name" class="form-control" autocomplete="off" placeholder="请输入登录名~~" value="">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">登录密码:</label>
                 <div class="col-lg-10">
-                    <input type="password" name="login_pwd" class="form-control"  autocomplete="new-password" placeholder="请输入登录密码~~" value="******">
+                    <input type="password" name="login_pwd" class="form-control"  autocomplete="new-password" placeholder="请输入登录密码~~" value="">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>

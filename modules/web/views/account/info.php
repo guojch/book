@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="m-b-md">
-                    <a class="btn btn-outline btn-primary pull-right" href="/web/account/set?id=12">
+                    <a class="btn btn-outline btn-primary pull-right" href="/web/account/edit?id=12">
                         <i class="fa fa-pencil"></i>编辑
                     </a>
                     <h2>账户信息</h2>
