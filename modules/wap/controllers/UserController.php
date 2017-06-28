@@ -16,57 +16,62 @@ use yii\web\Controller;
  */
 class UserController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'main';
+    }
+    
     //我的
     public function actionIndex(){
-        $this->layout = false;
+
         return $this->render('index');
     }
     
     //我的地址列表
     public function actionAddress(){
-        $this->layout = false;
+
         return $this->render('address');
     }
     
     //添加或编辑我的地址
     public function actionAddress_Edit(){
-        $this->layout = false;
+
         return $this->render('address_edit');
     }
     
     //我的收藏
     public function actionFavorite(){
-        $this->layout = false;
+
         return $this->render('favorite');
     }
     
     //帐号绑定
     public function actionBind(){
-        $this->layout = false;
+
         return $this->render('bind');
     }
     
     //我的购物车
     public function actionCart(){
-        $this->layout = false;
+
         return $this->render('cart');
     }
     
     //我的订单页面
     public function actionOrder(){
-        $this->layout = false;
+
         return $this->render('order');
     }
     
     //用户评论
     public function actionComment(){
-        $this->layout = false;
+
         return $this->render('comment');
     }
     
     //评论编辑
     public function actionComment_set(){
-        $this->layout = false;
+
         return $this->render('comment_set');
     }
 }

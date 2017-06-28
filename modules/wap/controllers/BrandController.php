@@ -16,9 +16,14 @@ use yii\web\Controller;
  */
 class BrandController extends Controller{
     
+    public function __construct($id, $module, $config = array()) {
+        parent::__construct($id, $module, $config);
+        $this->layout = 'main';
+    }
+    
     //品牌首页
     public function actionIndex(){
-        $this->layout = false;
+
         return $this->render('index');
     }
 }

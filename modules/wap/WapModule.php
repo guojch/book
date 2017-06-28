@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\member;
+namespace app\modules\wap;
 
 /**
  * wap module definition class
