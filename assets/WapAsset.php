@@ -13,13 +13,14 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class WapAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-        'css/wap/app.css',
+        'font-awesome/css/font-awesome.css',
+        'css/m/css_style.css',
+        'css/m/app.css?ver=20170401',
     ];
     public $js = [
     ];

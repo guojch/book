@@ -19,7 +19,7 @@ class AccountController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'account';
+        $this->layout = 'main';
     }
     
     //账户列表

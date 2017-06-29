@@ -18,7 +18,7 @@ class OrderController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'order';
+        $this->layout = 'main';
     }
     
     //订单列表

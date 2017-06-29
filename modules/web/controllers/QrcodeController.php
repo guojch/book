@@ -18,18 +18,18 @@ class QrcodeController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'qrcode';
+        $this->layout = 'main';
     }
     
     //渠道二维码列表
     public function actionList(){
-        $this->layout = false;
+
         return $this->render('list');
     }
     
     //渠道二维码添加与编辑
     public function actionEdit(){
-        $this->layout = false;
+
         return $this->render('edit');
     }
 }

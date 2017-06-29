@@ -18,7 +18,7 @@ class BrandController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'brand';
+        $this->layout = 'main';
     }
     
     //品牌信息

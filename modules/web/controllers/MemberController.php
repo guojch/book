@@ -18,7 +18,7 @@ class MemberController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'member';
+        $this->layout = 'main';
     }
     
     //会员列表

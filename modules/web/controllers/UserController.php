@@ -18,7 +18,7 @@ class UserController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'user';
+        $this->layout = 'main';
     }
     
     //用户登录

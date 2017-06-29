@@ -18,7 +18,7 @@ class StatController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'stat';
+        $this->layout = 'main';
     }
     
     //财务统计

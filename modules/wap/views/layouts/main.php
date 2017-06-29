@@ -1,3 +1,8 @@
+<?php
+use app\assets\WapAsset;
+WapAsset::register($this);
+?>
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,14 +13,11 @@
         <!-- Set render engine for 360 browser -->
         <meta name="renderer" content="webkit">
         <title>郭小钧微信图书商城</title>
-        <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link href="/css/m/css_style.css" rel="stylesheet">
-        <link href="/css/m/app.css?ver=20170401" rel="stylesheet">
+        <?php $this->head(); ?>
     </head>
     <body>
-
+    <?php $this->beginBody(); ?>
         <?= $content; ?>
-        
         <div class="copyright clearfix">
             <p class="name">欢迎您，xxx</p>
 	    <p class="copyright">由<a href="/" target="_blank">郭小钧</a>提供技术支持</p>
@@ -25,5 +27,7 @@
             <span><a href="/wap/product/list" class="product"><i class="store_icon"></i><b>图书</b></a></span>
             <span><a href="/wap/user/index" class="user"><i class="member_icon"></i><b>我的</b></a></span>
         </div>
+    <?php $this->endBody(); ?>
     </body>
 </html>
+<?php $this->endPage(); ?>

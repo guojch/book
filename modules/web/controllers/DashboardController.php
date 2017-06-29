@@ -18,7 +18,7 @@ class DashboardController extends Controller{
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);
-        $this->layout = 'dashboard';
+        $this->layout = 'main';
     }
     
     //仪表盘
