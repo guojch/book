@@ -8,14 +8,14 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
+use app\common\components\BaseWebController;
 use yii\log\FileTarget;
 /**
  * Description of ErrorController
  *
  * @author guojch
  */
-class ErrorController extends Controller{
+class ErrorController extends BaseWebController {
     
     public function actionError(){
         //记录错误信息到文件和数据库
