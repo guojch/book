@@ -1,5 +1,6 @@
 <?php
 use app\assets\WebAsset;
+use app\common\services\UrlService;
 WebAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
@@ -95,7 +96,7 @@ WebAsset::register($this);
                                             <a class="pull-left" href="/web/user/reset-pwd">
                                                 <i class="fa fa-lock"></i> 修改密码
                                             </a>
-                                            <a class="pull-right" href="/web/user/logout">
+                                            <a class="pull-right" href="<?= UrlService::buildWebUrl('/user/logout') ?>">
                                                 <i class="fa fa-sign-out"></i> 退出
                                             </a>
                                         </div>

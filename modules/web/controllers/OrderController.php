@@ -8,13 +8,14 @@
 
 namespace app\modules\web\controllers;
 
-use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
+
 /**
  * Description of OrderController
  *
  * @author guojch
  */
-class OrderController extends Controller{
+class OrderController extends BaseController {
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);

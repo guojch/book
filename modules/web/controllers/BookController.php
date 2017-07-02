@@ -8,14 +8,14 @@
 
 namespace app\modules\web\controllers;
 
-use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
 /**
  * Description of BookController
  *
  * @author guojch
  */
-class BookController extends Controller{
+class BookController extends BaseController {
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);

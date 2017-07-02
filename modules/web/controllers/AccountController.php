@@ -8,14 +8,14 @@
 
 namespace app\modules\web\controllers;
 
-use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
 /**
  * Description of AccountController
  *
  * @author guojch
  */
-class AccountController extends Controller{
+class AccountController extends BaseController {
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);

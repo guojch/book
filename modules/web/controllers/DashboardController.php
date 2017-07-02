@@ -8,13 +8,14 @@
 
 namespace app\modules\web\controllers;
 
-use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
+
 /**
  * Description of DashboardController
  *
  * @author guojch
  */
-class DashboardController extends Controller{
+class DashboardController extends BaseController {
     
     public function __construct($id, $module, $config = array()) {
         parent::__construct($id, $module, $config);

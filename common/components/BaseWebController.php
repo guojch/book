@@ -60,4 +60,9 @@ class BaseWebController extends Controller{
             'req_id' => uniqid() //序列号，该方法确保每次生成的序列号一定不一样。
         ]);
     }
+
+    //统一JS提示方法
+    public function renderJs($msg,$url){
+        return $this->renderPartial('@app/views/common/jsTip',['msg'=>$msg,'url'=>$url]);
+    }
 }

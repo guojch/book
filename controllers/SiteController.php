@@ -41,38 +41,29 @@ class SiteController extends BaseWebController
 //            ],
 //        ];
 //    }
-//
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actions()
-//    {
-//        return [
-//            'error' => [
-//                'class' => 'yii\web\ErrorAction',
-//            ],
+
+    /**
+     * @inheritdoc
+     */
+    public function actions(){
+        $this->layout = false;
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
 //            'captcha' => [
 //                'class' => 'yii\captcha\CaptchaAction',
 //                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
 //            ],
-//        ];
-//    }
-//
-//    /**
-//     * Displays homepage.
-//     *
-//     * @return string
-//     */
-//    public function actionIndex()
-//    {
-//        return $this->render('index');
-//    }
-//
-//    /**
-//     * Login action.
-//     *
-//     * @return string
-//     */
+        ];
+    }
+
+
+    /**
+     * Login action.
+     *
+     * @return string
+     */
 //    public function actionLogin()
 //    {
 //        if (!Yii::$app->user->isGuest) {
@@ -87,24 +78,24 @@ class SiteController extends BaseWebController
 //            'model' => $model,
 //        ]);
 //    }
-//
-//    /**
-//     * Logout action.
-//     *
-//     * @return string
-//     */
+
+    /**
+     * Logout action.
+     *
+     * @return string
+     */
 //    public function actionLogout()
 //    {
 //        Yii::$app->user->logout();
 //
 //        return $this->goHome();
 //    }
-//
-//    /**
-//     * Displays contact page.
-//     *
-//     * @return string
-//     */
+
+    /**
+     * Displays contact page.
+     *
+     * @return string
+     */
 //    public function actionContact()
 //    {
 //        $model = new ContactForm();
@@ -116,15 +107,5 @@ class SiteController extends BaseWebController
 //        return $this->render('contact', [
 //            'model' => $model,
 //        ]);
-//    }
-//
-//    /**
-//     * Displays about page.
-//     *
-//     * @return string
-//     */
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
 //    }
 }
