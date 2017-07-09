@@ -2,6 +2,9 @@
 use app\assets\WebAsset;
 use app\common\services\UrlService;
 WebAsset::register($this);
+
+$controller_id = Yii::$app->controller->id;
+$action_id = Yii::$app->controller->action->id;
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -107,19 +110,19 @@ WebAsset::register($this);
                     </nav>
                 </div>
                 <!--根据不同的控制器id显示对应的栏目分块-->
-                <?php if(Yii::$app->controller->id == 'account'){ ?>
+                <?php if($controller_id == 'account'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li  class="current"  >
+                                    <li class="current">
                                         <a href="/web/account/list">账户列表</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'book'){ ?>
+                <?php }else if($controller_id == 'book'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -137,7 +140,7 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'brand'){ ?>
+                <?php }else if($controller_id == 'brand'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -152,7 +155,7 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'member'){ ?>
+                <?php }else if($controller_id == 'member'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -167,7 +170,7 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'order'){ ?>
+                <?php }else if($controller_id == 'order'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -182,7 +185,7 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'qrcode'){ ?>
+                <?php }else if($controller_id == 'qrcode'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -194,7 +197,7 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'stat'){ ?>
+                <?php }else if($controller_id == 'stat'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
@@ -215,16 +218,16 @@ WebAsset::register($this);
                             </div>
                         </div>
                     </div>
-                <?php }else if(Yii::$app->controller->id == 'user'){ ?>
+                <?php }else if($controller_id == 'user'){ ?>
                     <div class="row border-bottom">
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li class="current">
-                                        <a href="/web/user/edit">信息编辑</a>
+                                    <?= $action_id=='edit'?'<li class="current">':'<li>'; ?>
+                                        <a href="<?= UrlService::buildWebUrl('/user/edit') ?>">帐号编辑</a>
                                     </li>
-                                    <li>
-                                        <a href="/web/user/reset-pwd">修改密码</a>
+                                    <?= $action_id=='reset-pwd'?'<li class="current">':'<li>'; ?>
+                                        <a href="<?= UrlService::buildWebUrl('/user/reset-pwd') ?>">修改密码</a>
                                     </li>
                                 </ul>
                             </div>
@@ -232,7 +235,6 @@ WebAsset::register($this);
                     </div>
                 <?php } ?>
                 <?= $content;?>
-                
             </div>
         </div>
     <?php $this->endBody(); ?>

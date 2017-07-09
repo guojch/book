@@ -43,8 +43,7 @@ class UserController extends BaseController {
 
         // 验证密码
         // 密码加密算法：md5(login_pwd + md5(login_salt))
-        $auth_pwd = md5($login_pwd . md5($user_info['login_salt']));
-        if($auth_pwd != $user_info['login_pwd']){
+        if(!$user_info->verifyPassword($login_pwd)){
             return $this->renderJs('密码错误。',UrlService::buildWebUrl('/user/login'));
         }
 
@@ -57,14 +56,60 @@ class UserController extends BaseController {
     
     // 用户编辑
     public function actionEdit(){
+        //get请求，渲染页面
+        if(\Yii::$app->request->isGet){
+            return $this->render('edit',['user_info'=>$this->current_user]);
+        }
 
-        return $this->render('edit');
+        $username = trim($this->post('username',''));
+        $email = trim($this->post('email',''));
+        if(mb_strlen($username,'utf-8') < 1){
+            return $this->renderJson([],'请输入合法的姓名。','-1');
+        }
+        if(mb_strlen($email,'utf-8') < 1){
+            return $this->renderJson([],'请输入合法的邮箱地址。','-1');
+        }
+
+        $user_info = $this->current_user;
+        $user_info->username = $username;
+        $user_info->email = $email;
+        $user_info->updated_time = date('Y-m-d H:i:s');
+        $user_info->update();
+
+        return $this->renderJson([],'编辑成功。');
     }
     
     // 用户重置密码
     public function actionResetPwd(){
+        //get请求，渲染页面
+        if(\Yii::$app->request->isGet){
+            return $this->render('reset_pwd',['user_info'=>$this->current_user]);
+        }
 
-        return $this->render('reset_pwd');
+        $old_password = trim($this->post('old_password',''));
+        $new_password = trim($this->post('new_password',''));
+        if(mb_strlen($old_password,'utf-8') < 1){
+            return $this->renderJson([],'请输入原密码。','-1');
+        }
+        if(mb_strlen($new_password,'utf-8') < 6){
+            return $this->renderJson([],'请输入不少于6位字符的新密码。','-1');
+        }
+        if($old_password == $new_password){
+            return $this->renderJson([],'新密码不能与原密码相同。','-1');
+        }
+        //判断原密码是否正确
+        $user_info = $this->current_user;
+        if(!$user_info->verifyPassword($old_password)){
+            return $this->renderJson([],'原密码错误，请重新输入。','-1');
+        }
+
+        $user_info->setPassword($new_password);
+        $user_info->update();
+
+        //修改用户的登录状态(cookie做了改变)：
+        $this->setLoginStatus($user_info);
+
+        return $this->renderJson([],'重置密码成功。');
     }
 
     // 用户退出

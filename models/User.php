@@ -22,6 +22,22 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    //设置密码
+    public function setPassword($password){
+        $this->login_pwd = $this->getSaltPassword($password);
+        $this->updated_time = date('Y-m-d H:i:s');
+    }
+
+    //生成加密密码
+    public function getSaltPassword($password){
+        return md5($password.md5($this->login_salt));
+    }
+
+    //校验生成的加密密码与数据中的是否一致
+    public function verifyPassword($password){
+        return $this->getSaltPassword($password) == $this->login_pwd;
+    }
+
     /**
      * @inheritdoc
      */

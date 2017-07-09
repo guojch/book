@@ -15,6 +15,7 @@ use app\models\User;
 class BaseController extends BaseWebController {
 
     protected $auth_token_name = 'guojch_book';
+    public $current_user = null;//当前登录人信息
 
     public $allowAllAction = [
         'web/user/login'
@@ -74,6 +75,8 @@ class BaseController extends BaseWebController {
         if($auth_token != $this->setAuthToken($user_info)){
             return false;
         }
+
+        $this->current_user = $user_info;
 
         return true;
     }
