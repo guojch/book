@@ -9,6 +9,7 @@
 namespace app\modules\web\controllers\common;
 
 use app\common\components\BaseWebController;
+use app\common\services\applog\AppLogService;
 use app\common\services\UrlService;
 use app\models\User;
 
@@ -45,6 +46,10 @@ class BaseController extends BaseWebController {
             }
             return false;
         }
+
+        // 记录用户访问日志
+        AppLogService::addAppAccessLog($this->current_user['id']);
+
         return true;
     }
 
@@ -53,7 +58,7 @@ class BaseController extends BaseWebController {
      */
     public function checkLoginStatus(){
         // 获取登录cookie
-        $auth_cookie = $this->getCookie($this->auth_token_name);
+        $auth_cookie = $this->getCookie($this->auth_token_name,'');
         if(!$auth_cookie){
             return false;
         }
@@ -101,6 +106,6 @@ class BaseController extends BaseWebController {
      * 加密字符串 = md5(login_name + login_pwd + login_salt)
      */
     public function setAuthToken($user_info){
-        return md5($user_info['login_name'].$user_info['login_pwd'],$user_info['login_salt']);
+        return md5($user_info['login_name'].$user_info['login_pwd'].$user_info['login_salt']);
     }
 }

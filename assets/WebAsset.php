@@ -44,6 +44,7 @@ class WebAsset extends AssetBundle
         $this->js = [
             'plugins/jquery-2.1.1.js',
             'js/web/bootstrap.min.js',
+            'plugins/layer/layer.js',
             'js/web/common.js?ver='.$release_version,
         ];
         

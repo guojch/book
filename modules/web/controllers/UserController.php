@@ -106,7 +106,7 @@ class UserController extends BaseController {
         $user_info->setPassword($new_password);
         $user_info->update();
 
-        //修改用户的登录状态(cookie做了改变)：
+        // 修改用户的登录状态(cookie做了改变)：
         $this->setLoginStatus($user_info);
 
         return $this->renderJson([],'重置密码成功。');

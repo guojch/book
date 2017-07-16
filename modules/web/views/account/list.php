@@ -63,9 +63,15 @@ StaticService::includeAppJsStatic('/js/web/account/list.js',app\assets\WebAsset:
                         <a class="m-l" href="<?= UrlService::buildWebUrl('/account/edit',['id' => $_item['id']]); ?>" title="编辑帐号">
                             <i class="fa fa-edit fa-lg"></i>
                         </a>
-                        <a class="m-l remove" href="javascript:void(0);" data="<?= $_item['id']; ?>" title="删除帐号">
-                            <i class="fa fa-trash fa-lg"></i>
-                        </a>
+                        <?php if($_item['status']): ?>
+                            <a class="m-l remove" href="javascript:void(0);" data="<?= $_item['id']; ?>" title="删除帐号">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </a>
+                        <?php else: ?>
+                            <a class="m-l recover" href="javascript:void(0);" data="<?= $_item['id']; ?>" title="删除帐号">
+                                <i class="fa fa-rotate-left fa-lg"></i>
+                            </a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

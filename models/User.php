@@ -25,7 +25,16 @@ class User extends \yii\db\ActiveRecord
     //设置密码
     public function setPassword($password){
         $this->login_pwd = $this->getSaltPassword($password);
-        $this->updated_time = date('Y-m-d H:i:s');
+    }
+
+    // 生成随机login_salt
+    public function setSalt($length = 16){
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*";
+        $salt = '';
+        for($i=0;$i<$length;$i++){
+            $salt .= $chars[mt_rand(0,strlen($chars)-1)];
+        }
+        $this->login_salt = $salt;
     }
 
     //生成加密密码

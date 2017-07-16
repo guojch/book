@@ -16,11 +16,11 @@ var user_reset_pwd_ops = {
             var old_password = $('#old_password').val();
             var new_password = $('#new_password').val();
             if(old_password.length < 1){
-                alert('请输入原密码。');
+                common_ops.tip('请输入原密码。',$('#old_password'));
                 return false;
             }
             if(new_password.length < 6){
-                alert('请输入不少于6位字符的新密码。');
+                common_ops.tip('请输入不少于6位字符的新密码。',$('#new_password'));
                 return false;
             }
 
@@ -36,10 +36,13 @@ var user_reset_pwd_ops = {
                 },
                 success:function(res){
                     btn_target.removeClass('disabled');
-                    alert(res.msg);
+                    var callback = null;
                     if(res.code == 200){
-                        location.reload();
+                        callback = function(){
+                            location.reload();
+                        };
                     }
+                    common_ops.alert(res.msg,callback);
                 }
             });
         })
