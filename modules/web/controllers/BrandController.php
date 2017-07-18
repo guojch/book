@@ -30,8 +30,10 @@ class BrandController extends BaseController {
     
     //品牌编辑
     public function actionEdit(){
+        if(\Yii::$app->request->isGet){
+            return $this->render('edit');
+        }
 
-        return $this->render('edit');
     }
     //品牌相册
     public function actionImages(){

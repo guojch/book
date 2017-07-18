@@ -1,3 +1,6 @@
+<?php
+use \app\common\services\UrlService;
+?>
 <div class="row m-t">
     <div class="col-lg-9 col-lg-offset-2 m-t">
         <dl class="dl-horizontal">
@@ -15,7 +18,7 @@
             <dt>品牌介绍</dt>
             <dd>我店是知名的综合性网上购物商城，由国内著名出版机构科文公司、美国老虎基金、美国IDG集团、卢森堡剑桥集团、亚洲创业投资基金（原名软银中国创业基金）共同投资成立。</dd>
             <dd>
-                    <a href="/web/brand/set" class="btn btn-outline btn-primary btn-w-m">编辑</a>
+                    <a href="<?= UrlService::buildWebUrl('/brand/edit'); ?>" class="btn btn-outline btn-primary btn-w-m">编辑</a>
             </dd>
         </dl>
     </div>
