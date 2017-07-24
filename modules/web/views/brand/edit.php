@@ -9,7 +9,7 @@ StaticService::includeAppJsStatic('/js/web/brand/edit.js',\app\assets\WebAsset::
 			<div class="form-group">
 				<label class="col-lg-2 control-label">品牌名称:</label>
 				<div class="col-lg-10">
-					<input type="text" name="name" class="form-control" placeholder="请输入品牌名称~~" value="">
+					<input type="text" name="name" class="form-control" placeholder="请输入品牌名称~~" value="<?= $info?$info['name']:''; ?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
@@ -33,21 +33,21 @@ StaticService::includeAppJsStatic('/js/web/brand/edit.js',\app\assets\WebAsset::
 			<div class="form-group">
 				<label class="col-lg-2 control-label">电话:</label>
 				<div class="col-lg-10">
-					<input type="text" name="phone" class="form-control" placeholder="请输入联系电话~~"  value="">
+					<input type="text" name="phone" class="form-control" placeholder="请输入联系电话~~"  value="<?= $info?$info['phone']:''; ?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">地址:</label>
 				<div class="col-lg-10">
-					<input type="text" name="address" class="form-control" placeholder="请输入联系地址~~"  value="">
+					<input type="text" name="address" class="form-control" placeholder="请输入联系地址~~"  value="<?= $info?$info['address']:''; ?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">品牌介绍:</label>
 				<div class="col-lg-10">
-					<textarea  name="description" class="form-control" rows="4"></textarea>
+					<textarea  name="description" class="form-control" rows="4"><?= $info?$info['description']:''; ?></textarea>
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>

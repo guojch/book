@@ -47,6 +47,7 @@ var brand_edit_ops = {
                 address:address,
                 description:description
             }
+
             $.ajax({
                 url:common_ops.buildWebUrl('/brand/edit'),
                 type:'POST',
@@ -57,7 +58,7 @@ var brand_edit_ops = {
                     var callback = null;
                     if(res.code == 200){
                         callback = function(){
-                            common_ops.buildWebUrl('/brand/info');
+                            location.href = common_ops.buildWebUrl('/brand/info');
                         };
                     }
                     common_ops.alert(res.msg,callback);
