@@ -2,8 +2,8 @@
 
 return [
     'domain' => [
-        'index' => 'http://guojch.com',
-        'web' => 'http://guojch.com/web',
-        'wap' => 'http://guojch.com/wap'
+        'index' => 'http://book.guojch.com',
+        'web' => 'http://book.guojch.com/web',
+        'wap' => 'http://book.guojch.com/wap'
     ]
 ];
