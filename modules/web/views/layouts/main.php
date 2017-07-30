@@ -127,13 +127,13 @@ $action_id = Yii::$app->controller->action->id;
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li>
+                                    <?= $action_id=='list'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/book/list">图书列表</a>
                                     </li>
-                                    <li  class="current">
+                                    <?= $action_id=='cat'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/book/cat">分类列表</a>
                                     </li>
-                                    <li>
+                                    <?= $action_id=='images'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/book/images">图片资源</a>
                                     </li>
                                 </ul>
@@ -145,10 +145,10 @@ $action_id = Yii::$app->controller->action->id;
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li class="current">
+                                    <?= $action_id=='info'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/brand/info">品牌信息</a>
                                     </li>
-                                    <li>
+                                    <?= $action_id=='images'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/brand/images">品牌相册</a>
                                     </li>
                                 </ul>
@@ -160,10 +160,10 @@ $action_id = Yii::$app->controller->action->id;
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li>
+                                    <?= $action_id=='list'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/member/list">会员列表</a>
                                     </li>
-                                    <li class="current">
+                                    <?= $action_id=='comment'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/member/comment">会员评论</a>
                                     </li>
                                 </ul>
@@ -175,10 +175,10 @@ $action_id = Yii::$app->controller->action->id;
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li>
+                                    <?= $action_id=='list'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/finance/list">订单列表</a>
                                     </li>
-                                    <li  class="current">
+                                    <?= $action_id=='finance'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/order/finance">财务流水</a>
                                     </li>
                                 </ul>
@@ -202,16 +202,16 @@ $action_id = Yii::$app->controller->action->id;
                         <div class="col-lg-12">
                             <div class="tab_title">
                                 <ul class="nav nav-pills">
-                                    <li class="current">
+                                    <?= $action_id=='finance'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/stat/finance">财务统计</a>
                                     </li>
-                                    <li>
+                                    <?= $action_id=='product'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/stat/product">商品售卖</a>
                                     </li>
-                                    <li>
+                                    <?= $action_id=='member'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/stat/member">会员消费统计</a>
                                     </li>
-                                    <li>
+                                    <?= $action_id=='share'?'<li class="current">':'<li>'; ?>
                                         <a href="/web/stat/share">分享统计</a>
                                     </li>
                                 </ul>

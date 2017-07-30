@@ -20,4 +20,6 @@ class ConstantMapService{
 
     public static $default_avatar = "default_avatar";
     public static $default_password = '******';
+
+    public static $default_syserror = '系统繁忙，请稍后再试~~';
 }

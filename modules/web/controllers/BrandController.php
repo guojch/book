@@ -1,15 +1,12 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace app\modules\web\controllers;
 
 use app\models\BrandSetting;
+use app\models\BrandImages;
 use app\modules\web\controllers\common\BaseController;
+use app\common\services\ConstantMapService;
+use app\common\services\UrlService;
 
 /**
  * Description of BrandController
@@ -22,14 +19,20 @@ class BrandController extends BaseController {
         parent::__construct($id, $module, $config);
         $this->layout = 'main';
     }
-    
-    //品牌信息
+
+    /**
+     * 品牌信息
+     */
     public function actionInfo(){
         $info = BrandSetting::find()->one();
-        return $this->render('info',['info'=>$info]);
+        return $this->render('info',[
+            'info' => $info
+        ]);
     }
-    
-    //品牌编辑
+
+    /**
+     * 品牌编辑
+     */
     public function actionEdit(){
         if(\Yii::$app->request->isGet){
             $info = BrandSetting::find()->one();
@@ -74,9 +77,55 @@ class BrandController extends BaseController {
 
         return $this->renderJson([],'操作成功。');
     }
-    //品牌相册
-    public function actionImages(){
 
-        return $this->render('images');
+    /**
+     * 品牌相册
+     */
+    public function actionImages(){
+        $list = BrandImages::find()->orderBy(['id'=>SORT_DESC])->all();
+        return $this->render("images",[
+            'list' => $list
+        ]);
+    }
+
+    /**
+     * 编辑品牌相册
+     */
+    public function actionEditImage(){
+        $image_key = trim( $this->post("image_key","") );
+        if(!$image_key){
+            return $this->renderJSON([],"请上传图片之后在提交。",-1);
+        }
+
+        $total_count = BrandImages::find()->count();
+        if($total_count >= 5){
+            return $this->renderJSON([],"最多上传五张。",-1);
+        }
+
+        $model = new BrandImages();
+        $model->image_key = $image_key;
+        $model->save();
+        return $this->renderJSON([],"操作成功。");
+    }
+
+    /**
+     * 删除品牌相册
+     */
+    public function actionImageOps(){
+        if(!\Yii::$app->request->isPost){
+            return $this->renderJSON( [],ConstantMapService::$default_syserror,-1 );
+        }
+
+        $id = $this->post('id',[]);
+        if(!$id){
+            return $this->renderJSON([],"请选择要删除的图片。",-1);
+        }
+
+        $info = BrandImages::find()->where(['id'=>$id])->one();
+        if(!$info){
+            return $this->renderJSON([],"指定图片不存在。",-1);
+        }
+        $info->delete();
+        return $this->renderJSON( [],"操作成功。" );
     }
 }

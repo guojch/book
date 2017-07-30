@@ -25,7 +25,7 @@ var upload = {
     error: function(msg){
         common_ops.alert(msg);
     }
-}
+};
 
 var brand_edit_ops = {
     init:function(){
