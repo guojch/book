@@ -1,5 +1,6 @@
 <?php
 use app\common\services\StaticService;
+use app\common\services\UrlService;
 StaticService::includeAppJsStatic('/js/web/brand/edit.js',\app\assets\WebAsset::className());
 ?>
 <div class="row m-t  wrap_brand_set">
@@ -16,16 +17,18 @@ StaticService::includeAppJsStatic('/js/web/brand/edit.js',\app\assets\WebAsset::
 			<div class="form-group">
 				<label class="col-lg-2 control-label">品牌Logo:</label>
 				<div class="col-lg-10">
-                    <form class="upload_pic_wrap" target="upload_file" enctype="multipart/form-data" method="POST" action="/web/upload/pic">
+                    <form class="upload_pic_wrap" target="upload_file" enctype="multipart/form-data" method="POST" action="<?= UrlService::buildWebUrl('/upload/pic'); ?>">
                         <div class="upload_wrap pull-left">
                             <i class="fa fa-upload fa-2x"></i>
                             <input type="hidden" name="bucket" value="brand" />
                             <input type="file" name="pic" accept="image/png, image/jpeg, image/jpg,image/gif">
                         </div>
-                        <span class="pic-each">
-							<img src="/uploads/brand/20170301/a8887738ab1bfd71765dd063fee4ddaa.jpg">
-							<span class="fa fa-times-circle del del_image" data="20170301/a8887738ab1bfd71765dd063fee4ddaa.jpg"><i></i></span>
-						</span>
+                        <?php if($info && $info['logo']): ?>
+                            <span class="pic-each">
+                                <img src="<?= UrlService::buildPicUrl('brand',$info['logo']); ?>">
+                                <span class="fa fa-times-circle del del_image" data="<?= $info['logo']; ?>"><i></i></span>
+                            </span>
+                        <?php endif; ?>
                     </form>
 				</div>
 			</div>
@@ -59,3 +62,5 @@ StaticService::includeAppJsStatic('/js/web/brand/edit.js',\app\assets\WebAsset::
 		</div>
 	</div>
 </div>
+<!--无刷新上传，iframe实际是一个新页面。-->
+<iframe class="hide" name="upload_file"></iframe>

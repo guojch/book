@@ -22,4 +22,11 @@ class UtilService{
         }
         return $_SERVER['REMOTE_ADDR'];
     }
+
+    /**
+     * 获取项目根目录
+     */
+    public static function getRootPath(){
+        return dirname(\Yii::$app->vendorPath);
+    }
 }

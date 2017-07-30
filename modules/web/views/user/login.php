@@ -15,15 +15,15 @@ use app\common\services\UrlService;
     <body class="gray-bg">
         <div class="loginColumns animated fadeInDown">
             <div class="row">
-                <div class="col-md-6 text-center">
-                    <h2 class="font-bold">郭小钧图书商城管理后台</h2>
-                    <p>
-                        <img src="/images/common/qrcode.jpg" width="300px"/>
-                    </p>
-                    <p class="text-danger">
-                        扫描关注查看Demo
-                    </p>
-                </div>
+<!--                <div class="col-md-6 text-center">-->
+<!--                    <h2 class="font-bold">郭小钧图书商城管理后台</h2>-->
+<!--                    <p>-->
+<!--                        <img src="/images/common/qrcode.jpg" width="300px"/>-->
+<!--                    </p>-->
+<!--                    <p class="text-danger">-->
+<!--                        扫描关注查看Demo-->
+<!--                    </p>-->
+<!--                </div>-->
                 <div class="col-md-6">
                     <div class="ibox-content">
                         <form class="m-t" role="form" action="<?= UrlService::buildWebUrl('/user/login') ?>" method="post">
@@ -37,20 +37,20 @@ use app\common\services\UrlService;
                                 <input type="password" name="login_pwd" class="form-control" placeholder="请输入登录密码">
                             </div>
                             <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
-                            <h3>账号和密码请关注左侧服务号 回复"<span class="text-danger">商城账号</span>"获取，每日更新一次 </h3>
+<!--                            <h3>账号和密码请关注左侧服务号 回复"<span class="text-danger">商城账号</span>"获取，每日更新一次 </h3>-->
                         </form>
                     </div>
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    图书商城管理系统 <a href="http://www.54php.cn/" target="_blank"> 技术支持 </a>
-                </div>
-                <div class="col-md-6 text-right">
-                    <small>© 2017</small>
-                </div>
-            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                    图书商城管理系统 <a href="http://www.54php.cn/" target="_blank"> 技术支持 </a>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 text-right">-->
+<!--                    <small>© 2017</small>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </body>
 </html>

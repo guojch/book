@@ -37,12 +37,16 @@ class BrandController extends BaseController {
         }
 
         $name = trim($this->post('name',''));
+        $image_key = trim($this->post('image_key',''));
         $phone = trim($this->post('phone',''));
         $address = trim($this->post('address',''));
         $description = trim($this->post('description',''));
 
         if(mb_strlen($name,'utf-8') < 1){
             return $this->renderJson([],'请输入品牌名称。',-1);
+        }
+        if(!$image_key){
+            return $this->renderJson([],'请上传品牌logo。',-1);
         }
         if(mb_strlen($phone,'utf-8') < 1){
             return $this->renderJson([],'请输入手机号码。',-1);
@@ -61,6 +65,7 @@ class BrandController extends BaseController {
             $model_brand = new BrandSetting();
         }
         $model_brand->name = $name;
+        $model_brand->logo = $image_key;
         $model_brand->phone = $phone;
         $model_brand->address = $address;
         $model_brand->description = $description;
