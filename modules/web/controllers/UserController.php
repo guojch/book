@@ -73,7 +73,7 @@ class UserController extends BaseController {
         $user_info = $this->current_user;
         $user_info->username = $username;
         $user_info->email = $email;
-        $user_info->updated_time = date('Y-m-d H:i:s');
+        $user_info->updated_time = date('Y-wap-d H:i:s');
         $user_info->update();
 
         return $this->renderJson([],'编辑成功。');

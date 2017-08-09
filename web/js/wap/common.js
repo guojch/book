@@ -12,15 +12,15 @@ var common_ops = {
         var pathname = window.location.pathname;
         var nav_name = null;
 
-        if(  pathname.indexOf("/m/default") > -1 || pathname == "/m" || pathname == "/m/" ){
+        if(  pathname.indexOf("/wap/default") > -1 || pathname == "/wap" || pathname == "/wap/" ){
             nav_name = "default";
         }
 
-        if(  pathname.indexOf("/m/product") > -1  ){
+        if(  pathname.indexOf("/wap/product") > -1  ){
             nav_name = "product";
         }
 
-        if(  pathname.indexOf("/m/user") > -1  ){
+        if(  pathname.indexOf("/wap/user") > -1  ){
             nav_name = "user";
         }
 
@@ -31,7 +31,7 @@ var common_ops = {
         $(".footer_fixed ."+nav_name).addClass("aon");
     },
     buildMUrl:function( path ,params){
-        var url =   "/m" + path;
+        var url =   "/wap" + path;
         var _paramUrl = '';
         if( params ){
             _paramUrl = Object.keys(params).map(function(k) {
@@ -74,11 +74,11 @@ $(document).ready( function() {
 
 
 // 对Date的扩展，将 Date 转化为指定格式的String
-// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+// 月(M)、日(d)、小时(h)、分(wap)、秒(s)、季度(q) 可以用 1-2 个占位符，
 // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
 // 例子：
 // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
-// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+// (new Date()).Format("yyyy-M-d h:wap:s.S")      ==> 2006-7-2 8:9:4.18
 Date.prototype.Format = function(fmt)
 { //author: meizz
     var o = {

@@ -16,12 +16,6 @@ use app\modules\web\controllers\common\BaseController;
  * @author guojch
  */
 class DashboardController extends BaseController {
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
     //仪表盘
     public function actionInfo(){
 

@@ -19,8 +19,8 @@ class WapAsset extends AssetBundle
     public $baseUrl = '@web';
 //    public $css = [
 //        'font-awesome/css/font-awesome.css',
-//        'css/m/css_style.css',
-//        'css/m/app.css?ver=20170401',
+//        'css/wap/css_style.css',
+//        'css/wap/app.css?ver=20170401',
 //    ];
 //    public $js = [
 //    ];
@@ -29,9 +29,9 @@ class WapAsset extends AssetBundle
         $release_version = defined('RELEASE_VERSION')?RELEASE_VERSION:time();
         
         $this->css = [
-            'css/web/bootstrap.min.css',
             'font-awesome/css/font-awesome.css',
-            'css/web/style.css?ver='.$release_version,
+            'css/wap/css_style.css',
+            'css/wap/app.css?ver='.$release_version,
         ];
         
         $this->js = [

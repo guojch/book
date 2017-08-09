@@ -16,12 +16,6 @@ use app\modules\web\controllers\common\BaseController;
  * @author guojch
  */
 class QrcodeController extends BaseController {
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
     //渠道二维码列表
     public function actionList(){
 

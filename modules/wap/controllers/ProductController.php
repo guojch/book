@@ -8,18 +8,13 @@
 
 namespace app\modules\wap\controllers;
 
-use yii\web\Controller;
+use app\modules\wap\controllers\common\BaseController;
 /**
  * Description of ProductController
  *
  * @author guojch
  */
-class ProductController extends Controller{
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
+class ProductController extends BaseController {
     
     //商品列表
     public function actionList(){

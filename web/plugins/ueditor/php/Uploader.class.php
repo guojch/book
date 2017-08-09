@@ -285,7 +285,7 @@ class Uploader
     {
         //替换日期事件
         $t = time();
-        $d = explode('-', date("Y-y-m-d-H-i-s"));
+        $d = explode('-', date("Y-y-wap-d-H-i-s"));
         $format = $this->config["pathFormat"];
         $format = str_replace("{yyyy}", $d[0], $format);
         $format = str_replace("{yy}", $d[1], $format);

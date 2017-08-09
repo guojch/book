@@ -8,22 +8,22 @@
 
 namespace app\modules\wap\controllers;
 
-use yii\web\Controller;
+use app\models\BrandImages;
+use app\models\BrandSetting;
+use app\modules\wap\controllers\common\BaseController;
 /**
  * Description of BrandController
  *
  * @author guojch
  */
-class BrandController extends Controller{
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
+class BrandController extends BaseController {
     //品牌首页
     public function actionIndex(){
-
-        return $this->render('index');
+        $info = BrandSetting::find()->one();
+        $image_list = BrandImages::find()->orderBy(['id'=>SORT_DESC])->all();
+        return $this->render('index',[
+            'info' => $info,
+            'image_list' => $image_list
+        ]);
     }
 }

@@ -14,12 +14,6 @@ use app\common\services\UrlService;
  * @author guojch
  */
 class BrandController extends BaseController {
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-
     /**
      * 品牌信息
      */

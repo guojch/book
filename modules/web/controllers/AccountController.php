@@ -21,11 +21,6 @@ use app\modules\web\controllers\common\BaseController;
  */
 class AccountController extends BaseController {
     
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
     //账户列表
     public function actionList(){
 
@@ -132,7 +127,7 @@ class AccountController extends BaseController {
         if($login_pwd != ConstantMapService::$default_password){
             $model_user->setPassword($login_pwd);
         }
-        $model_user->updated_time = date('Y-m-d H:i:s');
+        $model_user->updated_time = date('Y-wap-d H:i:s');
         $model_user->save();
 
         return $this->renderJson([],'操作成功。');
@@ -189,7 +184,7 @@ class AccountController extends BaseController {
                 $user_info->status = 1;
                 break;
         }
-        $user_info->updated_time = date('Y-m-d H:i:s');
+        $user_info->updated_time = date('Y-wap-d H:i:s');
         $user_info->update();
 
         return $this->renderJson([],'操作成功。');

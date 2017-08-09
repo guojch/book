@@ -8,18 +8,13 @@
 
 namespace app\modules\wap\controllers;
 
-use yii\web\Controller;
+use app\modules\wap\controllers\common\BaseController;
 /**
  * Description of PayController
  *
  * @author guojch
  */
-class PayController extends Controller{
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
+class PayController extends BaseController {
     
     //购买支付页面
     public function actionBuy(){

@@ -17,11 +17,6 @@ use app\modules\web\controllers\common\BaseController;
  */
 class BookController extends BaseController {
     
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
     //图书列表
     public function actionList(){
 

@@ -58,15 +58,15 @@ function Music() {
         listenTest:function (elem) {
             var me = this,
                 view = $G('J_preview'),
-                is_play_action = (elem.className == 'm-try'),
+                is_play_action = (elem.className == 'wap-try'),
                 old_trying = me._getTryingElem();
 
             if (old_trying) {
-                old_trying.className = 'm-try';
+                old_trying.className = 'wap-try';
                 view.innerHTML = '';
             }
             if (is_play_action) {
-                elem.className = 'm-trying';
+                elem.className = 'wap-trying';
                 view.innerHTML = me._buildMusicHtml(me._getUrl(true));
             }
         },
@@ -97,7 +97,7 @@ function Music() {
             var s = $G('J_listPanel').getElementsByTagName('span');
 
             for (var i = 0; i < s.length; i++) {
-                if (s[i].className == 'm-trying')
+                if (s[i].className == 'wap-trying')
                     return s[i];
             }
             return null;
@@ -154,16 +154,16 @@ function Music() {
                     s.push('<div id="panel' + i + '" class="paneloff">');
                     t.push('<div id="page' + i + '" onclick="music.onpageclick(' + i + ')" class="pageoff">' + (i ) + '</div>');
                 }
-                s.push('<div class="m-box">');
-                s.push('<div class="m-h"><span class="m-t">' + lang.chapter + '</span><span class="m-s">' + lang.singer
-                    + '</span><span class="m-z">' + lang.special + '</span><span class="m-try-t">' + lang.listenTest + '</span></div>');
+                s.push('<div class="wap-box">');
+                s.push('<div class="wap-h"><span class="wap-t">' + lang.chapter + '</span><span class="wap-s">' + lang.singer
+                    + '</span><span class="wap-z">' + lang.special + '</span><span class="wap-try-t">' + lang.listenTest + '</span></div>');
                 for (var j = 0, tmpObj; tmpObj = tmpList[j++];) {
-                    s.push('<label for="radio-' + i + '-' + j + '" class="m-m">');
-                    s.push('<input type="radio" id="radio-' + i + '-' + j + '" name="musicId" class="m-l" onclick="music.doselect(' + (me.pageSize * (i-1) + (j-1)) + ')"/>');
-                    s.push('<span class="m-t">' + me._getMaxText(tmpObj.title) + '</span>');
-                    s.push('<span class="m-s">' + me._getMaxText(tmpObj.author) + '</span>');
-                    s.push('<span class="m-z">' + me._getMaxText(tmpObj.album_title) + '</span>');
-                    s.push('<span class="m-try" onclick="music.doselect(' + (me.pageSize * (i-1) + (j-1)) + ');music.listenTest(this)"></span>');
+                    s.push('<label for="radio-' + i + '-' + j + '" class="wap-wap">');
+                    s.push('<input type="radio" id="radio-' + i + '-' + j + '" name="musicId" class="wap-l" onclick="music.doselect(' + (me.pageSize * (i-1) + (j-1)) + ')"/>');
+                    s.push('<span class="wap-t">' + me._getMaxText(tmpObj.title) + '</span>');
+                    s.push('<span class="wap-s">' + me._getMaxText(tmpObj.author) + '</span>');
+                    s.push('<span class="wap-z">' + me._getMaxText(tmpObj.album_title) + '</span>');
+                    s.push('<span class="wap-try" onclick="music.doselect(' + (me.pageSize * (i-1) + (j-1)) + ');music.listenTest(this)"></span>');
                     s.push('</label>');
                 }
                 s.push('</div>');

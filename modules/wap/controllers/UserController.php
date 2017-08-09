@@ -8,19 +8,14 @@
 
 namespace app\modules\wap\controllers;
 
-use yii\web\Controller;
+use app\modules\wap\controllers\common\BaseController;
 /**
  * Description of UserController
  *
  * @author guojch
  */
-class UserController extends Controller{
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
+class UserController extends BaseController {
+
     //我的
     public function actionIndex(){
 

@@ -16,12 +16,6 @@ use app\modules\web\controllers\common\BaseController;
  * @author guojch
  */
 class StatController extends BaseController {
-    
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
-    
     //财务统计
     public function actionFinance(){
 
