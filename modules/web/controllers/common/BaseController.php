@@ -14,7 +14,7 @@ use app\common\services\UrlService;
 use app\models\User;
 
 class BaseController extends BaseWebController {
-
+    protected $page_size = 50;
     protected $auth_token_name = 'guojch_book';
     public $current_user = null;//当前登录人信息
 
