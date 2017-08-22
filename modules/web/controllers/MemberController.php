@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace app\modules\web\controllers;
 
 use app\modules\web\controllers\common\BaseController;
@@ -15,11 +9,8 @@ use yii\helpers\Html;
 use app\common\services\UrlService;
 use app\models\MemberComments;
 use app\models\Order;
-/**
- * Description of MemberController
- *
- * @author guojch
- */
+
+
 class MemberController extends BaseController {
     //会员列表
     public function actionList(){
@@ -32,8 +23,8 @@ class MemberController extends BaseController {
 
         if($mix_kw){
             $where_nickname = ['LIKE','nickname','%'.strtr($mix_kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
-            $where_mobile = ['LIKE','mobile','%'.strtr($mix_kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
-            $query->andWhere(['OR',$where_nickname,$where_mobile]);
+            $where_phone = ['LIKE','phone','%'.strtr($mix_kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false];
+            $query->andWhere(['OR',$where_nickname,$where_phone]);
         }
 
         if($status > ConstantMapService::$status_default){
@@ -98,8 +89,7 @@ class MemberController extends BaseController {
 
         $order_list = Order::find()->where(['member_id' => $id,'status' => [-8,1]])->orderBy(['id' => SORT_DESC])->all();
         $comments_list = MemberComments::find()->where(['member_id' => $id])->orderBy(['id' => SORT_DESC])->all();
-
-
+        
         return $this->render("info",[
             "info" => $info,
             "order_list" => $order_list,

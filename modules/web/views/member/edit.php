@@ -17,7 +17,7 @@ StaticService::includeAppJsStatic( "/js/web/member/edit.js",\app\assets\WebAsset
 			<div class="form-group">
 				<label class="col-lg-2 control-label">会员手机:</label>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" placeholder="请输入会员手机" name="phone" value="<?=$info?$info['mobile']:'';?>">
+					<input type="text" class="form-control" placeholder="请输入会员手机" name="phone" value="<?=$info?$info['phone']:'';?>">
 				</div>
 			</div>
 			<div class="hr-line-dashed"></div>
