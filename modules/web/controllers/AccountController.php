@@ -26,8 +26,9 @@ class AccountController extends BaseController {
 
         $status = intval($this->get('status',ConstantMapService::$status_default));
         $mix_kw = trim($this->get('mix_kw',''));
-        $page_cur = intval($this->get('page_cur',1));
-
+        $p = intval($this->get('p',1));
+        $p = ($p > 0)?$p:1;
+        
         $query = User::find();
         //状态搜索
         if($status > ConstantMapService::$status_default){
@@ -35,20 +36,18 @@ class AccountController extends BaseController {
         }
         //关键字搜索
         if($mix_kw){
-            $where_username = ['LIKE','username','%'.$mix_kw.'%',false];
-            $where_phone = ['LIKE','phone','%'.$mix_kw.'%',false];//不加false，会默认添加2个百分号。
+            $where_username = [ 'LIKE','username','%'.strtr($mix_kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false ];
+            $where_phone = [ 'LIKE','phone','%'.strtr($mix_kw,['%'=>'\%', '_'=>'\_', '\\'=>'\\\\']).'%', false ];//不加false，会默认添加2个百分号。
             $query->andWhere(['OR',$where_username,$where_phone]);
         }
 
         //分页功能
-        $page_size = 10;
         $total_count = $query->count();
-        $total_page = ceil($total_count/$page_size);
+        $total_page = ceil($total_count/$this->page_size);
 
         $list = $query->orderBy(['id' => SORT_DESC])
-            ->offset(($page_cur - 1) * $page_size)
-            ->limit($page_size)
-            ->asArray()
+            ->offset(($p - 1) * $this->page_size)
+            ->limit($this->page_size)
             ->all();
 
         return $this->render('list',[
@@ -60,9 +59,9 @@ class AccountController extends BaseController {
             ],
             'pages' => [
                 'total_page' => $total_page,
-                'page_size' => $page_size,
+                'page_size' => $this->page_size,
                 'total_count' => $total_count,
-                'page_cur' => $page_cur
+                'p' => $p
             ]
         ]);
     }
@@ -127,7 +126,7 @@ class AccountController extends BaseController {
         if($login_pwd != ConstantMapService::$default_password){
             $model_user->setPassword($login_pwd);
         }
-        $model_user->updated_time = date('Y-wap-d H:i:s');
+        $model_user->updated_time = date('Y-m-d H:i:s');
         $model_user->save();
 
         return $this->renderJson([],'操作成功。');
@@ -184,7 +183,7 @@ class AccountController extends BaseController {
                 $user_info->status = 1;
                 break;
         }
-        $user_info->updated_time = date('Y-wap-d H:i:s');
+        $user_info->updated_time = date('Y-m-d H:i:s');
         $user_info->update();
 
         return $this->renderJson([],'操作成功。');

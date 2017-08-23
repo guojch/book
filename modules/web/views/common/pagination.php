@@ -12,7 +12,7 @@ use \app\common\services\UrlService;
                     </li>
                 <?php else:?>
                     <li>
-                        <a href="<?=UrlService::buildWebUrl($url,['p' => $_page]);?>"><?=$_page;?></a>
+                        <a href="<?=UrlService::buildWebUrl($url,['p'=>$_page,'status'=>$search['status'],'mix_kw'=>$search['mix_kw']]);?>"><?=$_page;?></a>
                     </li>
                 <?php endif;?>
             <?php endfor;?>

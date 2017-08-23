@@ -80,8 +80,9 @@ StaticService::includeAppJsStatic( "/js/web/member/list.js",\app\assets\WebAsset
             <?php endif;?>
             </tbody>
         </table>
-        <?php echo \Yii::$app->view->renderFile("@app/modules/web/views/common/pagination.php", [
+        <?= \Yii::$app->view->renderFile("@app/modules/web/views/common/pagination.php", [
             'pages' => $pages,
+            'search' => $search_conditions,
             'url' => '/member/list'
         ]); ?>
     </div>

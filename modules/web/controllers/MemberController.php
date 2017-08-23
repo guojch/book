@@ -61,7 +61,6 @@ class MemberController extends BaseController {
             'list' => $data,
             'search_conditions' => [
                 'mix_kw' => $mix_kw,
-                'p' => $p,
                 'status' => $status
             ],
             'status_mapping' => ConstantMapService::$status_mapping,
