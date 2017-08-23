@@ -89,7 +89,7 @@ class MemberController extends BaseController {
 
         $order_list = Order::find()->where(['member_id' => $id,'status' => [-8,1]])->orderBy(['id' => SORT_DESC])->all();
         $comments_list = MemberComments::find()->where(['member_id' => $id])->orderBy(['id' => SORT_DESC])->all();
-        
+
         return $this->render("info",[
             "info" => $info,
             "order_list" => $order_list,
