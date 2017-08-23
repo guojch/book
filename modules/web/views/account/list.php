@@ -1,7 +1,8 @@
 <?php
-use app\common\services\UrlService;
+use \app\common\services\UrlService;
 use \app\common\services\ConstantMapService;
-use app\common\services\StaticService;
+use \app\common\services\StaticService;
+use \yii\helpers\Html;
 StaticService::includeAppJsStatic('/js/web/account/list.js',app\assets\WebAsset::className());
 ?>
 <div class="row">
@@ -21,7 +22,6 @@ StaticService::includeAppJsStatic('/js/web/account/list.js',app\assets\WebAsset:
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text" name="mix_kw" placeholder="请输入姓名或者手机号码" class="form-control" value="<?= $search_conditions['mix_kw']; ?>">
-                        <input type="hidden" name="page_cur" value="">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary search">
                                 <i class="fa fa-search"></i>搜索
@@ -50,12 +50,13 @@ StaticService::includeAppJsStatic('/js/web/account/list.js',app\assets\WebAsset:
                 </tr>
             </thead>
             <tbody>
+            <?php if($list):?>
                 <?php foreach ($list as $_item): ?>
                 <tr>
                     <td><?= $_item['id']; ?></td>
-                    <td><?= $_item['username']; ?></td>
-                    <td><?= $_item['phone']; ?></td>
-                    <td><?= $_item['email']; ?></td>
+                    <td><?= Html::encode($_item['username']); ?></td>
+                    <td><?= Html::encode($_item['phone']); ?></td>
+                    <td><?= Html::encode($_item['email']); ?></td>
                     <td>
                         <a href="<?= UrlService::buildWebUrl('/account/info',['id' => $_item['id']]); ?>" title="帐号信息">
                             <i class="fa fa-eye fa-lg"></i>
@@ -75,21 +76,15 @@ StaticService::includeAppJsStatic('/js/web/account/list.js',app\assets\WebAsset:
                     </td>
                 </tr>
                 <?php endforeach; ?>
+            <?php else:?>
+                <tr><td colspan="5">暂无数据</td></tr>
+            <?php endif;?>
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-lg-12">
-                <span class="pagination_count" style="line-height: 40px;">共<?= $pages['total_count']; ?>条记录 | 每页<?= $pages['page_size']; ?>条</span>
-                <ul class="pagination pagination-lg pull-right" style="margin: 0 0 ;">
-                    <?php for($_page = 1;$_page <= $pages['total_page'];$_page++): ?>
-                        <?php if($_page == $pages['page_cur']): ?>
-                            <li class="active"><a href="<?= UrlService::buildNullUrl(); ?>"><?= $pages['page_cur']; ?></a></li>
-                        <?php else: ?>
-                            <li><a href="<?= UrlService::buildWebUrl('/account/list',['page_cur'=>$_page]) ?>"><?= $_page; ?></a></li>
-                        <?php endif; ?>
-                    <?php endfor; ?>
-                </ul>
-            </div>
-        </div>
+        <?= \Yii::$app->view->renderFile("@app/modules/web/views/common/pagination.php", [
+            'pages' => $pages,
+            'search' => $search_conditions,
+            'url' => '/account/list'
+        ]); ?>
     </div>
 </div>
