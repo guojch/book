@@ -1,32 +1,29 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/7/3
- * Time: 23:27
- */
 
 namespace app\common\services;
+use  yii\helpers\Html;
 
-/*
- * 封装通用方法
- */
-class UtilService{
-    /*
-     * 获取IP
-     */
-    public static function getIP(){
-        if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-            //设置了反向代理
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        return $_SERVER['REMOTE_ADDR'];
-    }
+class UtilService {
+	public static function getRootPath(){
+		$vendor_path = \Yii::$app->vendorPath;
+		return dirname($vendor_path);
+	}
 
-    /**
-     * 获取项目根目录
-     */
-    public static function getRootPath(){
-        return dirname(\Yii::$app->vendorPath);
-    }
+	public static function encode( $dispaly_text ){
+		return  Html::encode($dispaly_text);
+	}
+
+	public static function getIP(){
+		if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+			return $_SERVER["HTTP_X_FORWARDED_FOR"];
+		return isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"]:'';
+	}
+
+	public static  function isWechat(){
+		$ug= isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
+		if( stripos($ug,'micromessenger') !== false ){
+			return true;
+		}
+		return false;
+	}
 }

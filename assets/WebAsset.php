@@ -8,6 +8,7 @@
 namespace app\assets;
 
 use yii\web\AssetBundle;
+use app\common\services\UrlService;
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -36,16 +37,16 @@ class WebAsset extends AssetBundle
         $release_version = defined('RELEASE_VERSION')?RELEASE_VERSION:time();
         
         $this->css = [
-            'css/web/bootstrap.min.css',
-            'font-awesome/css/font-awesome.css',
-            'css/web/style.css?ver='.$release_version,
+            UrlService::buildWwwUrl( "/css/web/bootstrap.min.css" ),
+            UrlService::buildWwwUrl( "/font-awesome/css/font-awesome.css"),
+            UrlService::buildWwwUrl( "/css/web/style.css",[ 'ver' => $release_version ] )
         ];
         
         $this->js = [
-            'plugins/jquery-2.1.1.js',
-            'js/web/bootstrap.min.js',
-            'plugins/layer/layer.js',
-            'js/web/common.js?ver='.$release_version,
+            UrlService::buildWwwUrl( "/plugins/jquery-2.1.1.js"),
+            UrlService::buildWwwUrl( "/js/web/bootstrap.min.js"),
+            UrlService::buildWwwUrl( "/plugins/layer/layer.js"),
+            UrlService::buildWwwUrl( "/js/web/common.js",[ 'ver' => $release_version ] ),
         ];
         
         parent::registerAssetFiles($view);

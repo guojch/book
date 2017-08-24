@@ -49,7 +49,7 @@ function fix_height() {
 var common_ops = {
     init:function(){
         this.eventBind();
-        //this.setMenuIconHighLight();
+        this.setMenuIconHighLight();
     },
     eventBind:function(){
         $('.navbar-minimalize').click(function () {
@@ -124,10 +124,10 @@ var common_ops = {
         return url + _paramUrl
 
     },
-    buildPicUrl:function( bucket,img_path ){
+    buildPicUrl:function( bucket,img_key ){
         var upload_config = eval( '(' + $(".hidden_layout_warp input[name=upload_config]").val() +')' );
         var domain = "http://" + window.location.hostname;
-        return domain + upload_config[ bucket ] + "/" + img_path;
+        return domain + upload_config[ bucket ] + "/" + img_key;
     },
     alert:function( msg ,cb ){
         layer.alert( msg,{
@@ -171,13 +171,12 @@ $(document).ready( function() {
     common_ops.init();
 });
 
-
 // 对Date的扩展，将 Date 转化为指定格式的String
-// 月(M)、日(d)、小时(h)、分(wap)、秒(s)、季度(q) 可以用 1-2 个占位符，
+// 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
 // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
 // 例子：
 // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
-// (new Date()).Format("yyyy-M-d h:wap:s.S")      ==> 2006-7-2 8:9:4.18
+// (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
 Date.prototype.Format = function(fmt)
 { //author: meizz
     var o = {

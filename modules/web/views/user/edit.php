@@ -1,7 +1,11 @@
 <?php
-use app\common\services\StaticService;
-StaticService::includeAppJsStatic('/js/web/user/edit.js',app\assets\WebAsset::className());
+use \app\common\services\UrlService;
+use \app\common\services\StaticService;
+use \app\common\services\ConstantMapService;
+StaticService::includeAppJsStatic("/js/web/user/edit.js",\app\assets\WebAsset::className());
 ?>
+
+<?php echo \Yii::$app->view->renderFile("@app/modules/web/views/common/tab_user.php",['current' => 'edit']);?>
 <div class="row m-t  user_edit_wrap">
     <div class="col-lg-12">
         <h2 class="text-center">账号信息编辑</h2>
@@ -9,7 +13,7 @@ StaticService::includeAppJsStatic('/js/web/user/edit.js',app\assets\WebAsset::cl
             <div class="form-group">
                 <label class="col-lg-2 control-label">手机:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="mobile" class="form-control" placeholder="请输入手机~~"  readonly value="<?= $user_info['phone']; ?>">
+                    <input type="text" name="mobile" class="form-control" placeholder="请输入手机~~"  readonly value="<?=$info?$info['mobile']:'';?>">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
@@ -17,7 +21,7 @@ StaticService::includeAppJsStatic('/js/web/user/edit.js',app\assets\WebAsset::cl
             <div class="form-group">
                 <label class="col-lg-2 control-label">姓名:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="username" class="form-control" placeholder="请输入姓名~~" value="<?= $user_info['username']; ?>">
+                    <input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="<?=$info?$info['nickname']:'';?>">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
@@ -25,7 +29,7 @@ StaticService::includeAppJsStatic('/js/web/user/edit.js',app\assets\WebAsset::cl
             <div class="form-group">
                 <label class="col-lg-2 control-label">邮箱:</label>
                 <div class="col-lg-10">
-                    <input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="<?= $user_info['email']; ?>">
+                    <input type="text" name="email" class="form-control" placeholder="请输入邮箱~~" value="<?=$info?$info['email']:'';?>">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>

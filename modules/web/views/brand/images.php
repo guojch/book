@@ -1,8 +1,11 @@
 <?php
 use \app\common\services\UrlService;
+use \app\common\services\UtilService;
 use \app\common\services\StaticService;
 StaticService::includeAppJsStatic("/js/web/brand/image.js",\app\assets\WebAsset::className());
 ?>
+
+<?php echo Yii::$app->view->renderFile("@app/modules/web/views/common/tab_brand.php",[ 'current' => 'images' ]);?>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="row m-t">
@@ -21,8 +24,8 @@ StaticService::includeAppJsStatic("/js/web/brand/image.js",\app\assets\WebAsset:
 			</tr>
 			</thead>
 			<tbody>
-            <?php if($list):?>
-                <?php foreach($list as $_item): ?>
+            <?php if( $list ):?>
+                <?php foreach( $list as $_item ):?>
                     <tr>
                         <td>
                             <img src="<?=UrlService::buildPicUrl("brand",$_item['image_key']);?>" style="width: 100px;height: 100px;"/>
@@ -40,19 +43,19 @@ StaticService::includeAppJsStatic("/js/web/brand/image.js",\app\assets\WebAsset:
             <?php else:?>
                 <tr><td colspan="3">暂无数据</td></tr>
             <?php endif;?>
-            </tbody>
+			</tbody>
 		</table>
 	</div>
 </div>
 
 <div class="modal fade" id="brand_image_wrap" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">上传图片</h4>
-            </div>
-            <div class="modal-body">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">上传图片</h4>
+			</div>
+			<div class="modal-body">
                 <div class="row">
                     <div class="col-lg-10">
                         <form class="upload_pic_wrap" target="upload_file" enctype="multipart/form-data" method="POST" action="<?=UrlService::buildWebUrl("/upload/pic");?>">
@@ -64,13 +67,14 @@ StaticService::includeAppJsStatic("/js/web/brand/image.js",\app\assets\WebAsset:
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary save">保存</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary save">保存</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div>
 
 <iframe name="upload_file" class="hide"></iframe>

@@ -1,29 +1,30 @@
 <?php
 use \app\common\services\UrlService;
+use \app\common\services\UtilService;
 use \app\common\services\ConstantMapService;
-use \yii\helpers\Html;
 ?>
+<?php echo Yii::$app->view->renderFile("@app/modules/web/views/common/tab_member.php",[ 'current' => 'index' ]);?>
 <div class="row m-t">
 	<div class="col-lg-12">
         <div class="row">
             <div class="col-lg-12">
                 <div class="m-b-md">
-                    <?php if($info && $info['status']):?>
-                        <a class="btn btn-outline btn-primary pull-right" href="<?=UrlService::buildWebUrl("/member/edit",['id' => $info['id']]);?>">编辑</a>
-                    <?php endif;?>
+					<?php if( $info && $info['status']):?>
+                    <a class="btn btn-outline btn-primary pull-right" href="<?=UrlService::buildWebUrl("/member/set",[ 'id' => $info['id'] ]);?>">编辑</a>
+					<?php endif;?>
                     <h2>会员信息</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-2 text-center">
-                <img class="img-circle" src="<?=UrlService::buildPicUrl("avatar",$info['avatar']);?>" width="100px" height="100px"/>
+                <img class="img-circle" src="<?=UrlService::buildPicUrl( "avatar",$info['avatar'] );?>" width="100px" height="100px"/>
             </div>
             <div class="col-lg-9">
                 <dl class="dl-horizontal">
-                    <dt>姓名：</dt> <dd><?=Html::encode($info['nickname']);?></dd>
-                    <dt>手机：</dt> <dd><?=Html::encode($info['phone']);?></dd>
-                    <dt>性别：</dt> <dd><?=ConstantMapService::$sex_mapping[$info['sex']];?></dd>
+                    <dt>姓名：</dt> <dd><?=UtilService::encode( $info['nickname'] );?></dd>
+                    <dt>手机：</dt> <dd><?=UtilService::encode( $info['mobile'] );?></dd>
+                    <dt>性别：</dt> <dd><?=ConstantMapService::$sex_mapping[ $info['sex'] ];?></dd>
                 </dl>
             </div>
         </div>
@@ -56,24 +57,24 @@ use \yii\helpers\Html;
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if($order_list):?>
-                                        <?php foreach($order_list as $_order_info):?>
-                                            <tr>
-                                                <td>
-                                                    <?=date("YmdHi",strtotime($_order_info['created_time'])).$_order_info['id'];?>
-                                                </td>
-                                                <td>
-                                                    <?php if($_order_info['status'] == 1):?>
-                                                        <?=date("Y-m-d H:i",strtotime($_order_info['pay_time']));?>
-                                                    <?php endif;?>
-                                                </td>
-                                                <td>
-                                                    <?=$_order_info['pay_price'];?>
-                                                </td>
-                                                <td>
-                                                    <?=ConstantMapService::$pay_status_mapping[$_order_info['status']];?>
-                                                </td>
-                                            </tr>
+                                    <?php if( $pay_order_list ):?>
+                                        <?php foreach( $pay_order_list as $_pay_order_info ):?>
+                                        <tr>
+                                            <td>
+                                               <?=date("YmdHi",strtotime( $_pay_order_info['created_time'] ) ).$_pay_order_info['id'];?>
+                                            </td>
+                                            <td>
+                                                <?php if( $_pay_order_info['status'] == 1 ):?>
+                                                <?=date("Y-m-d H:i",strtotime( $_pay_order_info['pay_time'] ) );?>
+                                                <?php endif;?>
+                                            </td>
+                                            <td>
+                                                <?=$_pay_order_info['pay_price'];?>
+                                            </td>
+                                            <td>
+												<?=ConstantMapService::$pay_status_mapping[ $_pay_order_info['status'] ];?>
+                                            </td>
+                                        </tr>
                                         <?php endforeach;?>
                                     <?php else:?>
                                         <tr><td colspan="4">暂无订单</td></tr>
@@ -84,30 +85,30 @@ use \yii\helpers\Html;
                             <div class="tab-pane" id="tab-2">
                                 <table class="table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>评论时间</th>
-                                            <th>评分</th>
-                                            <th>评论内容</th>
-                                        </tr>
+                                    <tr>
+                                        <th>评论时间</th>
+                                        <th>评分</th>
+                                        <th>评论内容</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if($comments_list):?>
-                                            <?php foreach($comments_list as $_item_comment):?>
-                                                <tr>
-                                                    <td>
-                                                        <?=$_item_comment['created_time'];?>
-                                                    </td>
-                                                    <td>
-                                                        <?=$_item_comment['score'];?>
-                                                    </td>
-                                                    <td>
-                                                        <?=Html::encode($_item_comment['content']);?>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach;?>
+                                    <tr>
+                                        <?php if( $comments_list ):?>
+                                            <?php foreach( $comments_list as $_item_comment ):?>
+                                        <td>
+                                            <?=$_item_comment['created_time'];?>
+                                        </td>
+                                                <td>
+													<?=$_item_comment['score'];?>
+                                                </td>
+                                        <td>
+											<?=UtilService::encode( $_item_comment['content'] );?>
+                                        </td>
+                                                <?php endforeach;?>
                                         <?php else:?>
-                                            <tr><td colspan="3">暂无评论</td></tr>
+                                    <tr><td colspan="3">暂无评论</td></tr>
                                         <?php endif;?>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

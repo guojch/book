@@ -61,8 +61,8 @@ class BaseWebController extends Controller{
         ]);
     }
 
-    //统一JS提示方法
-    public function renderJs($msg,$url){
-        return $this->renderPartial('@app/views/common/jsTip',['msg'=>$msg,'url'=>$url]);
+    //统一js提醒
+    protected  function renderJS($msg,$url = "/"){
+        return $this->renderPartial("@app/views/common/js", ['msg' => $msg, 'location' => $url]);
     }
 }

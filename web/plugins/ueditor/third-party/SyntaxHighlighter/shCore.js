@@ -618,7 +618,7 @@ if (XRegExp) {
     );
 
     // Mode modifier at the start of the pattern only, with any combination of flags imsx: (?imsx)
-    // Does not support x(?i), (?-i), (?i-wap), (?i: ), (?i)(?wap), etc.
+    // Does not support x(?i), (?-i), (?i-m), (?i: ), (?i)(?m), etc.
     XRegExp.addToken(
         /^\(\?([imsx]+)\)/,
         function (match) {
@@ -655,7 +655,7 @@ if (XRegExp) {
     /*
      XRegExp.matchWithinChain = XRegExp.matchChain;
      RegExp.prototype.addFlags = function (s) {return clone(this, s);};
-     RegExp.prototype.execAll = function (s) {var r = []; XRegExp.iterate(s, this, function (wap) {r.push(wap);}); return r;};
+     RegExp.prototype.execAll = function (s) {var r = []; XRegExp.iterate(s, this, function (m) {r.push(m);}); return r;};
      RegExp.prototype.forEachExec = function (s, f, c) {return XRegExp.iterate(s, this, f, c);};
      RegExp.prototype.validate = function (s) {var r = RegExp("^(?:" + this.source + ")$(?!\\s)", getNativeFlags(this)); if (this.global) this.lastIndex = 0; return s.search(r) === 0;};
      */

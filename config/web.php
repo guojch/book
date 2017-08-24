@@ -13,6 +13,7 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath' => '@runtime/cache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
@@ -45,8 +46,11 @@ $config = [
         'web' => [
             'class' => 'app\modules\web\WebModule',
         ],
-        'wap' => [
-            'class' => 'app\modules\wap\WapModule',
+        'm' => [
+            'class' => 'app\modules\m\MModule',
+        ],
+        'weixin' => [
+            'class' => 'app\modules\weixin\WeixinModule',
         ],
     ],
 ];

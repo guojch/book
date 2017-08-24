@@ -11,6 +11,7 @@ $config = [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath' => '@runtime/cache',
         ],
         'log' => [
             'targets' => [
@@ -21,6 +22,17 @@ $config = [
             ],
         ],
         'db' => $db,
+        "urlManager" => [
+            'scriptUrl' => '',
+            'baseUrl' => '',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => false,
+            'rules' => [
+                '/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '/<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ]
+        ]
     ],
     'params' => $params,
     /*

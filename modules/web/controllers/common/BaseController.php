@@ -1,111 +1,93 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/7/2
- * Time: 18:16
- */
 
 namespace app\modules\web\controllers\common;
-
 use app\common\components\BaseWebController;
-use app\common\services\applog\AppLogService;
 use app\common\services\UrlService;
 use app\models\User;
-
+use app\common\services\applog\ApplogService;
 class BaseController extends BaseWebController {
-    protected $page_size = 10;
-    protected $auth_token_name = 'guojch_book';
-    public $current_user = null;//当前登录人信息
+	protected $page_size = 50;
+	protected  $auth_cookie_name = "mooc_book";
+	protected $current_user = null;
 
-    public $allowAllAction = [
-        'web/user/login'
-    ];
+	public $allowAllAction = [
+		'web/user/login',
+		'web/user/logout'
+	];
 
-    public function __construct($id, $module, $config = array()) {
-        parent::__construct($id, $module, $config);
-        $this->layout = 'main';
-    }
+	public function __construct($id, $module, $config = []){
+		parent::__construct($id, $module, $config = []);
+		$this->layout = "main";
+	}
 
-    /*
-     * 登录统一验证
-     */
-    public function beforeAction($action){
-        //如果在允许的action中，那就不要验证了
-        if(in_array($action->getUniqueId(),$this->allowAllAction)){
-            return true;
-        }
+	public function beforeAction( $action ){
+		$is_login = $this->checkLoginStatus();
 
-        //验证是否登录
-        $is_login = $this->checkLoginStatus();
-        if(!$is_login){
-            if(\Yii::$app->request->isAjax){
-                $this->renderJson([],'未登录，请先登录。',-302);
-            }else{
-                $this->redirect(UrlService::buildWebUrl('/user/login'));
-            }
-            return false;
-        }
+		if ( in_array($action->getUniqueId(), $this->allowAllAction ) ) {
+			return true;
+		}
 
-        // 记录用户访问日志
-        AppLogService::addAppAccessLog($this->current_user['id']);
+		if(!$is_login) {
+			if ( \Yii::$app->request->isAjax) {
+				$this->renderJSON([], "未登录,请返回用户中心", -302);
+			} else {
+				$this->redirect( UrlService::buildWebUrl("/user/login") );
+			}
+			return false;
+		}
 
-        return true;
-    }
+		ApplogService::addAppLog( $this->current_user['uid'] );
+		return true;
+	}
 
-    /*
-     * 验证是否当前登录状态有效 true or false
-     */
-    public function checkLoginStatus(){
-        // 获取登录cookie
-        $auth_cookie = $this->getCookie($this->auth_token_name,'');
-        if(!$auth_cookie){
-            return false;
-        }
-        // 分解cookie
-        list($auth_token,$id) = explode('#',$auth_cookie);
-        if(!$auth_token || !$id){
-            return false;
-        }
-        // 验证id是否为整数
-        if(!preg_match("/^\d+$/",$id)){
-            return false;
-        }
-        // 验证用户信息是否存在
-        $user_info = User::find()->where(['id'=>$id])->one();
-        if(!$user_info){
-            return false;
-        }
-        // 验证当前cookie是否正确
-        if($auth_token != $this->setAuthToken($user_info)){
-            return false;
-        }
+	/**
+	 * 目的：验证是否当前登录态有效 true or  false
+	 */
 
-        $this->current_user = $user_info;
+	protected function checkLoginStatus(){
 
-        return true;
-    }
+		$auth_cookie = $this->getCookie( $this->auth_cookie_name );
 
-    /*
-     * 设置登录状态方法
-     */
-    public function setLoginStatus($user_info){
-        $auth_token = $this->setAuthToken($user_info);
-        $this->setCookie($this->auth_token_name,$auth_token.'#'.$user_info['id']);
-    }
+		if( !$auth_cookie ){
+			return false;
+		}
+		list($auth_token,$uid) = explode("#",$auth_cookie);
+		if( !$auth_token || !$uid ){
+			return false;
+		}
+		if( $uid && preg_match("/^\d+$/",$uid) ){
+			$user_info = User::findOne([ 'uid' => $uid,'status' => 1 ]);
+			if( !$user_info ){
+				$this->removeAuthToken();
+				return false;
+			}
+			if( $auth_token != $this->geneAuthToken( $user_info ) ){
+				$this->removeAuthToken();
+				return false;
+			}
+			$this->current_user = $user_info;
+			\Yii::$app->view->params['current_user'] = $user_info;
+			return true;
+		}
+		return false;
+	}
 
-    /*
-     * 删除登录状态
-     */
-    public function removeLoginStatus(){
-        $this->removeCookie($this->auth_token_name);
-    }
+	public function setLoginStatus( $user_info ){
+		$auth_token = $this->geneAuthToken( $user_info );
+		$this->setCookie($this->auth_cookie_name,$auth_token."#".$user_info['uid']);
+	}
 
-    /*
-     * 统一生成加密字段
-     * 加密字符串 = md5(login_name + login_pwd + login_salt)
-     */
-    public function setAuthToken($user_info){
-        return md5($user_info['login_name'].$user_info['login_pwd'].$user_info['login_salt']);
-    }
+	protected  function removeAuthToken(){
+		$this->removeCookie($this->auth_cookie_name);
+	}
+
+	//统一生成加密字段 ,加密字符串 = md5( login_name + login_pwd + login_salt )
+	public function geneAuthToken( $user_info ){
+		return md5( "{$user_info['login_name']}-{$user_info['login_pwd']}-{$user_info['login_salt']}");
+	}
+
+	public function getUid(){
+		return $this->current_user?$this->current_user['uid']:0;
+	}
+
 }

@@ -1,53 +1,66 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace app\controllers;
 
+
 use app\common\components\BaseWebController;
-use app\common\services\applog\AppLogService;
+use app\common\services\applog\ApplogService;
+use Yii;
 use yii\log\FileTarget;
-/**
- * Description of ErrorController
- *
- * @author guojch
- */
+
 class ErrorController extends BaseWebController {
-    
+
     public function actionError(){
-        //记录错误信息到文件和数据库
-        $error = \Yii::$app->errorHandler->exception;
-        $err_msg = '';
-        if($error){
+        $error = Yii::$app->errorHandler->exception;
+        $err_msg = "";
+        if ($error) {
+            $code = $error->getCode();
+            $msg = $error->getMessage();
             $file = $error->getFile();
             $line = $error->getLine();
-            $message = $error->getMessage();
-            $code = $error->getCode();
-            
-            //写入到日志文件中
+
+            $time = microtime(true);
             $log = new FileTarget();
-            $log->logFile = \Yii::$app->getRuntimePath()."/logs/err.log";
-            
-            $err_msg = $message."[file:{$file}][line:{$line}][code:{$code}][url:{$_SERVER['REQUEST_URI']}][POST_DATA:".http_build_query($_POST)."]";
-        
+            $log->logFile = Yii::$app->getRuntimePath() . '/logs/err.log';
+
+            $err_msg = $msg . " [file: {$file}][line: {$line}][err code:$code.]".
+                "[url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."]";
+
+
             $log->messages[] = [
                 $err_msg,
                 1,
                 'application',
-                microtime(true)
+                $time
             ];
-            
             $log->export();
-            
-            //写入到数据库中
-            AppLogService::addErrorLog(\Yii::$app->id,$err_msg);
+            ApplogService::addErrorLog(Yii::$app->id,$err_msg);
         }
-        
-        $this->layout = 'main';
-        return $this->render('error',['err_msg'=>$err_msg]);
+
+        return $this->render("error",[
+            "err_msg" => $err_msg
+        ]);
     }
+
+    public function actionCapture(){
+        $yii_cookies = [];
+        $cookies = Yii::$app->request->cookies;
+        foreach( $_COOKIE as $_c_key => $_c_val ){
+            $yii_cookies[] = $_c_key.":".$cookies->get($_c_key);
+        }
+
+        $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
+        $ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
+        $url = $this->post("url","");
+        $message = $this->post("message","");
+        $error = $this->post("error","");
+        $err_msg = "JS ERROR：[url:{$referer}],[ua:{$ua}],[js_file:{$url}],[error:{$message}],[error_info:{$error}]";
+
+        if( !$url ){
+            $err_msg .= ",[cookie:{".implode(";",$yii_cookies)."}]";
+        }
+
+        ApplogService::addErrorLog("app-js",$err_msg);
+    }
+
 }

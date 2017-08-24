@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "user".
  *
- * @property integer $id
- * @property string $username
- * @property string $phone
+ * @property string $uid
+ * @property string $nickname
+ * @property string $mobile
  * @property string $email
  * @property integer $sex
  * @property string $avatar
@@ -22,31 +22,29 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
-    //设置密码
-    public function setPassword($password){
-        $this->login_pwd = $this->getSaltPassword($password);
-    }
+	public function setPassword( $password ) {
 
-    // 生成随机login_salt
-    public function setSalt($length = 16){
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*";
-        $salt = '';
-        for($i=0;$i<$length;$i++){
-            $salt .= $chars[mt_rand(0,strlen($chars)-1)];
-        }
-        $this->login_salt = $salt;
-    }
+		$this->login_pwd = $this->getSaltPassword($password);
+	}
 
-    //生成加密密码
-    public function getSaltPassword($password){
-        return md5($password.md5($this->login_salt));
-    }
 
-    //校验生成的加密密码与数据中的是否一致
-    public function verifyPassword($password){
-        return $this->getSaltPassword($password) == $this->login_pwd;
-    }
+	public function setSalt( $length = 16 ){
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+		$salt = '';
+		for ( $i = 0; $i < $length; $i++ ){
+			$salt .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+		}
+		$this->login_salt = $salt;
+	}
 
+	public function getSaltPassword($password) {
+		return md5( $password.md5( $this->login_salt ) );
+	}
+
+
+	public function verifyPassword($password) {
+		return $this->login_pwd === $this->getSaltPassword($password);
+	}
     /**
      * @inheritdoc
      */
@@ -61,10 +59,11 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['mobile', 'email', 'avatar'], 'required'],
             [['sex', 'status'], 'integer'],
             [['updated_time', 'created_time'], 'safe'],
-            [['username', 'email'], 'string', 'max' => 100],
-            [['phone', 'login_name'], 'string', 'max' => 20],
+            [['nickname', 'email'], 'string', 'max' => 100],
+            [['mobile', 'login_name'], 'string', 'max' => 20],
             [['avatar'], 'string', 'max' => 64],
             [['login_pwd', 'login_salt'], 'string', 'max' => 32],
             [['login_name'], 'unique'],
@@ -77,9 +76,9 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'phone' => 'Phone',
+            'uid' => 'Uid',
+            'nickname' => 'Nickname',
+            'mobile' => 'Mobile',
             'email' => 'Email',
             'sex' => 'Sex',
             'avatar' => 'Avatar',

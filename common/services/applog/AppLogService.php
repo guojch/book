@@ -1,61 +1,70 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/7/3
- * Time: 23:24
- */
 
 namespace app\common\services\applog;
 
 
+
 use app\common\services\UtilService;
-use app\models\AppAccessLog;
-use app\models\AppLog;
+use app\models\log\AppAccessLog;
+use app\models\log\AppLog;
+use Yii;
 
-class AppLogService{
+class ApplogService {
 
-    // 记录错误日志
     public static function addErrorLog($appname,$content){
-        $error = \Yii::$app->errorHandler->exception;
-        $model_app_log = new AppLog();
-        $model_app_log->app_name = $appname;
-        $model_app_log->content = $content;
-        $model_app_log->ip = UtilService::getIP();
 
-        if(!empty($_SERVER['HTTP_USER_AGENT'])){
-            $model_app_log->ua = $_SERVER['HTTP_USER_AGENT'];
+        $error = Yii::$app->errorHandler->exception;
+
+        $model_app_logs = new AppLog();
+        $model_app_logs->app_name = $appname;
+        $model_app_logs->content = $content;
+
+
+        $model_app_logs->ip = UtilService::getIP();
+
+        if( !empty($_SERVER['HTTP_USER_AGENT']) ) {
+            $model_app_logs ->ua = "[UA:{$_SERVER['HTTP_USER_AGENT']}]";
         }
 
-        if($error){
-            $model_app_log->err_code = $error->getCode();
-            if(isset($error->statusCode)){
-                $model_app_log->http_code = $error->statusCode;
+        if ($error) {
+
+            if(method_exists($error,'getName' )) {
+                $model_app_logs->err_name = $error->getName();
             }
-            if(method_exists($error,'getName')){
-                $model_app_log->err_name = $error->getName();
+
+            if (isset($error->statusCode)) {
+                $model_app_logs->http_code = $error->statusCode;
             }
+
+            $model_app_logs->err_code = $error->getCode();
         }
 
-        $model_app_log->save();
+        $model_app_logs->created_time = date("Y-m-d H:i:s");
+        $model_app_logs->save(0);
     }
 
-    // 记录用户访问日志
-    public static function addAppAccessLog($user_id = 0){
+    public static function addAppLog( $uid = 0 ){
+
         $get_params = \Yii::$app->request->get();
         $post_params = \Yii::$app->request->post();
+        if( isset( $post_params['summary'] ) ){
+            unset( $post_params['summary'] );
+        }
 
-        $target_url = $_SERVER['REQUEST_URI']?$_SERVER['REQUEST_URI']:'';
-        $referer = $_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:'';
-        $ua = $_SERVER['HTTP_USER_AGENT']?$_SERVER['HTTP_USER_AGENT']:'';
+
+        $target_url = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:'';
+
+        $referer = Yii::$app->request->getReferrer();
+        $ua = Yii::$app->request->getUserAgent();
 
         $access_log = new AppAccessLog();
-        $access_log->user_id = $user_id;
-        $access_log->referer_url = $referer;
+        $access_log->uid = $uid;
+        $access_log->referer_url = $referer?$referer:'';
         $access_log->target_url = $target_url;
         $access_log->query_params = json_encode(array_merge($get_params,$post_params));
-        $access_log->ua = $ua;
+        $access_log->ua = $ua?$ua:'';
         $access_log->ip = UtilService::getIP();
-        $access_log->save();
+        $access_log->created_time = date("Y-m-d H:i:s");
+        return $access_log->save(0);
     }
 }
