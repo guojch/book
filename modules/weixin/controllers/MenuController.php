@@ -16,7 +16,7 @@ class MenuController extends BaseWebController {
 					"url"  => UrlService::buildMUrl("/default/index")
 				],
 				[
-					"name" => "我",
+					"name" => "个人中心",
 					"type" => "view",
 					"url" => UrlService::buildMUrl("/user/index")
 				]

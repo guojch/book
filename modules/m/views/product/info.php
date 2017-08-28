@@ -21,7 +21,6 @@ StaticService::includeAppJsStatic( "/js/m/product/info.js",\app\assets\MAsset::c
         <h2><?=UtilService::encode( $info['name'] );?></h2>
         <h3><b>¥<?=UtilService::encode( $info['price'] );?></b><font>库存量：<?=$info['stock'];?></font></h3>
     </div>
-    <span class="share_span"><i class="share_icon"></i><b>分享商品</b></span>
 </div>
 <div class="pro_express">月销量：<?=$info['month_count'];?><b>累计评价：<?=$info['comment_count'];?></b></div>
 <div class="pro_virtue">
