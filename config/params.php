@@ -19,7 +19,7 @@ return [
         'aeskey' => '根据实际情况填写',
         'pay' => [
             'key' => '根据实际情况填写',
-            'mch_id' => '根据实际情况填写',
+            'mch_id' => '根据实际情况填写',// 服务号申请成功，才会有
             'notify_url' => [
                 'm' => '/pay/callback'
             ]
